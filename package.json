@@ -8,7 +8,10 @@
     "test:evm": "forge test -vv",
     "test:coordinator": "python3 -m py_compile contracts/cleara_coordinator.py",
     "check-foundry": "node scripts/check-foundry",
-    "verify": "bash scripts/verify"
+    "verify": "bash scripts/verify",
+    "workbench:build": "node apps/web/scripts/build.mjs",
+    "workbench:dev": "node apps/web/scripts/serve.mjs",
+    "workbench:test": "node --test apps/web/dist/test/case.test.js"
   },
   "keywords": [
     "genlayer",
