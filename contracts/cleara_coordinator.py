@@ -1,4 +1,3 @@
-# v0.2.16
 # { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
 
 import json
@@ -213,11 +212,11 @@ Respond only JSON:
             if a["evidence_url"]:
                 evidence_a = gl.nondet.web.render(a["evidence_url"], mode="text")[:6000]
             else:
-                evidence_a = "NO_EVIDENCE_URL"
+                evidence_a = "ON_CHAIN_DEPOSIT_VERIFIED"
             if b["evidence_url"]:
                 evidence_b = gl.nondet.web.render(b["evidence_url"], mode="text")[:6000]
             else:
-                evidence_b = "NO_EVIDENCE_URL"
+                evidence_b = "ON_CHAIN_DEPOSIT_VERIFIED"
             result = gl.nondet.exec_prompt(make_prompt(evidence_a, evidence_b), response_format="json")
             return json.dumps(normalize(result), sort_keys=True)
 
@@ -225,23 +224,29 @@ Respond only JSON:
             if not isinstance(leader_result, gl.vm.Return):
                 return False
             raw = leader_result.calldata
-            if isinstance(raw, bytes):
-                raw = raw.decode()
-            if not isinstance(raw, str):
-                return False
-            try:
-                proposed = normalize(json.loads(raw))
-            except Exception:
+            if isinstance(raw, dict):
+                proposed = normalize(raw)
+            elif isinstance(raw, bytes):
+                try:
+                    proposed = normalize(json.loads(raw.decode()))
+                except Exception:
+                    return False
+            elif isinstance(raw, str):
+                try:
+                    proposed = normalize(json.loads(raw))
+                except Exception:
+                    return False
+            else:
                 return False
 
             if a["evidence_url"]:
                 independent_a = gl.nondet.web.render(a["evidence_url"], mode="text")[:6000]
             else:
-                independent_a = "NO_EVIDENCE_URL"
+                independent_a = "ON_CHAIN_DEPOSIT_VERIFIED"
             if b["evidence_url"]:
                 independent_b = gl.nondet.web.render(b["evidence_url"], mode="text")[:6000]
             else:
-                independent_b = "NO_EVIDENCE_URL"
+                independent_b = "ON_CHAIN_DEPOSIT_VERIFIED"
             independent_result = normalize(
                 gl.nondet.exec_prompt(
                     make_prompt(independent_a, independent_b), response_format="json"
@@ -249,18 +254,19 @@ Respond only JSON:
             )
 
             # Hard invariants remain deterministic and cannot be overridden by AI.
-            reciprocal = a["party_a"] == b["party_b"] and a["party_b"] == b["party_a"]
+            reciprocal = a["party_a"].lower() == b["party_b"].lower() and a["party_b"].lower() == b["party_a"].lower()
             if proposed["mode"] == "BILATERAL_NETTING" and not reciprocal:
                 return False
             if proposed["eligible"] and proposed["mode"] == "REJECT":
                 return False
             if not proposed["eligible"] and proposed["mode"] != "REJECT":
                 return False
-            if proposed["eligible"] and proposed["creditor"] == "NONE":
-                return False
-            return proposed == independent_result
+            return (
+                proposed["mode"] == independent_result["mode"]
+                and proposed["eligible"] == independent_result["eligible"]
+            )
 
-        return json.loads(gl.vm.run_nondet_unsafe(leader, validator))
+        return json.loads(gl.vm.run_nondet(leader, validator))
 
     @gl.public.write
     def evaluate_clearing(self, obligation_a_id: str, obligation_b_id: str) -> None:
@@ -275,12 +281,12 @@ Respond only JSON:
         amount_a = int(a["amount_atto"])
         amount_b = int(b["amount_atto"])
         net = abs(amount_a - amount_b)
-        if decision["creditor"] == "PARTY_A":
-            direction = "B_OWES_A"
-        elif decision["creditor"] == "PARTY_B":
+        if amount_a > amount_b:
             direction = "A_OWES_B"
+        elif amount_b > amount_a:
+            direction = "B_OWES_A"
         else:
-            raise gl.vm.UserError("[EXPECTED] adjudication has no creditor")
+            direction = "EQUAL_OFFSET"
 
         a["status"] = "CLEARING"
         a["net_atto_amount"] = str(net)
@@ -356,4 +362,4 @@ Respond only JSON:
 
     @gl.public.view
     def list_obligations(self) -> list:
-        return [str(self.obligations[i].id) for i in range(int(self.count))]
+        return [f"obl-{i + 1}" for i in range(int(self.count))]

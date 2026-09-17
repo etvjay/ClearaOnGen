@@ -8,19 +8,19 @@
 
 ## 1. What Exists Right Now
 
-* **Canonical Adjudication Layer:** GenLayer Studio Next intelligent contract `ClearaCoordinator` deployed and verified on-chain at `0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55`.
+* **Canonical Adjudication Layer:** GenLayer Studio Next intelligent contract `ClearaCoordinator` deployed and verified on-chain at `0xF75595614305B537eA8bfD5fF3C53d074192eB2F`.
 * **Native Settlement Vaults:** `ClearaVault.sol` deployed on Ethereum Sepolia (`0x277341fc...`) and Base Sepolia (`0xe2b01f99...`) with active locked collateral and confirmed on-chain settlement.
 * **Control Plane:** Full `BUILD_FOUNDRY.md` control plane in `foundry/` with automated validation via `scripts/check-foundry`.
 * **Live Proving Harness:** `scripts/live_prove.mjs` executed multichain proving loop with evidence logged in `foundry/evidence/live-lifecycle.log`.
 
 ---
 
-## 2. What Is Implemented
+## 2. What Is Implemented & Proven Live
 
 * **Intelligent Contract:** 8 functional entrypoints in [`contracts/cleara_coordinator.py`](../../contracts/cleara_coordinator.py):
   * `record_obligation`: Registers bilateral reciprocal obligations.
-  * `verify_source_event`: Multi-validator dual-chain RPC verification via `strict_eq`.
-  * `evaluate_clearing`: Comparative AI consensus adjudication.
+  * `verify_source_event`: Multi-validator dual-chain RPC verification via `strict_eq` (LIVE PROVEN).
+  * `evaluate_clearing`: Comparative AI consensus adjudication via `run_nondet` (LIVE PROVEN, Tx `0x6b8d3511...`).
   * `mark_cleared`: Advances obligation lifecycle state.
   * `reconcile`: Finalizes clearing records.
   * `get_obligation`: Inspects obligation state.
@@ -33,12 +33,12 @@
 ## 3. What Is Deployed & Live
 
 * **Studio Next (Chain 61997):**
-  * Coordinator: `0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55`
-  * Tx Hash: `0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2`
-  * Status: `7` (`ACCEPTED/FINALIZED`), `FINISHED_WITH_RETURN`
+  * Coordinator: `0xF75595614305B537eA8bfD5fF3C53d074192eB2F`
+  * Tx Hash: `0xfb031403168a89a5acf5ce07ad7cbb1a0bd61f7706e283cc95961b5c3973e2ee`
+  * Status: `5` (`ACCEPTED/FINALIZED`), `FINISHED_WITH_RETURN`
 * **Ethereum Sepolia (Chain 11155111):**
   * Vault: `0x277341fc7c2481606ac69922a35b42344be5ec6f`
-  * Collateral Unlock: Confirmed in block `11723739`, tx `0xee575bb6e1d5ebadc4aa4670e973b80ab9d39257a5e93d4fdbd22cabce5ceeae`
+  * Collateral Unlock: Confirmed in block `11723829`, tx `0xd2d14af06b39f8ab9940c86507032b7f2412af9e96fb018d2aaff6acba59632b`
   * State: `3` (`SETTLED`)
 * **Base Sepolia (Chain 84532):**
   * Vault: `0xe2b01f99107a6ad24a6bdd8e34f7e864434c69ad`

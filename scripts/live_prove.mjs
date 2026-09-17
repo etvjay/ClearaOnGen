@@ -11,7 +11,7 @@ if (!pk) throw new Error("PRIVATE_KEY missing; load it from .env");
 const sepoliaRpc = "https://ethereum-sepolia-rpc.publicnode.com";
 const baseRpc = "https://sepolia.base.org";
 const genRpc = "https://studio-next.genlayer.com/api";
-const genContract = "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55";
+const genContract = "0xF75595614305B537eA8bfD5fF3C53d074192eB2F";
 
 const vaultAbi = parseAbi([
   "function deposit(bytes32 obligationId, address intendedRecipient, bytes32 targetChain) payable",
@@ -75,8 +75,8 @@ async function main() {
   const sepoliaWallet = createWalletClient({ account: alice, chain: sepolia, transport: http(sepoliaRpc) });
 
   // Verified locked deposit hashes
-  const idSepolia = "0x365f1ee2f03c0894860f9e20e26a8619a9787ae823eb5ca0f7e40ff932c8bbab";
-  const depSepHash = "0x933da158c33d710ce151a318c3736ca33814dc2fbfc9d812fc02f75c093fe278";
+  const idSepolia = "0xa5f9c71cbefe05bb7c2126d7816cce04e7890bccd038733590543e95ab143f28";
+  const depSepHash = "0x810cbd330f707d0a2a0741471a936ad5a403da6d62cf04e51459356633263557";
 
   const idBase = "0x0909d8b4992764452f2e066cb01de06ae741433c82c4b2b28ad1912686662b72";
   const depBaseHash = "0xbdd8b9bbd63c4b0d0a3f586469d5a87ae084606b1b9cef67d67a079a09560dea";

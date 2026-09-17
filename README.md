@@ -3,7 +3,7 @@
 > **Proof-Native Multichain Financial Coordination & Bilateral Settlement Protocol**  
 > *"Clear first. Move only what remains."*
 
-[![Foundry Verification](https://img.shields.io/badge/Foundry-100%25%20Verified-brightgreen)](#6-canonical-verification-pipeline)
+[![Foundry Verification](https://img.shields.io/badge/Foundry-100%25%20Verified-brightgreen)](#8-canonical-verification-pipeline)
 [![GenLayer Studio Next](https://img.shields.io/badge/GenLayer-Chain%2061997-blue)](https://studio-next.genlayer.com)
 [![Ethereum Sepolia](https://img.shields.io/badge/Ethereum-Sepolia%2011155111-purple)](https://sepolia.etherscan.io)
 [![Base Sepolia](https://img.shields.io/badge/Base-Sepolia%2084532-blue)](https://sepolia.basescan.org)
@@ -90,11 +90,11 @@ sequenceDiagram
 
     Note over GenLayer: Phase 4: AI Clearing Adjudication (Mode 1 Netting)
     Relayer->>GenLayer: evaluate_clearing(obl-1, obl-2)
-    Note over GenLayer: Multi-validator AI consensus evaluates semantic terms,<br/>confirms reciprocity invariant, calculates net (0.0004 ETH) -> status: CLEARING
+    Note over GenLayer: Multi-validator AI consensus (run_nondet) evaluates semantic terms,<br/>confirms reciprocity invariant, calculates net (0.0004 ETH) -> status: CLEARING
 
     Note over GenLayer: Phase 5: Settlement Certificate Generation
-    Relayer->>GenLayer: mark_cleared(obl-1) & reconcile(obl-1)
-    GenLayer-->>Relayer: Settlement Certificate (obl-1, net=0.0004 ETH, direction=A_OWES_B)
+    Relayer->>GenLayer: get_settlement_certificate(obl-1)
+    GenLayer-->>Relayer: Settlement Certificate (obl-1, net=0.0004 ETH, direction=A_OWES_B, AI Reason Codes)
 
     Note over SepVault,BaseVault: Phase 6: Native Execution & Local Collateral Release
     Relayer->>SepVault: unlockWithCertificate(id, Bob, 0.0004 ETH net, 0.0006 ETH refund, GenLayerTx)
@@ -112,10 +112,10 @@ Cleara supports three distinct settlement execution paths:
 ### 🌟 Mode 1 — Bilateral Reciprocal Netting (Live Proven On-Chain)
 * **What it is:** Two counterparties owe offsetting obligations on different chains. Cleara nets reciprocal amounts on-chain ($Gross \rightarrow Net$).
 * **Concrete Numerical Walkthrough:**
-  1. **Alice** owes Bob `0.001 ETH` on Ethereum Sepolia for server infrastructure. She locks `0.001 ETH` in `ClearaVault` on Sepolia.
+  1. **Alice** owes Bob `0.001 ETH` on Ethereum Sepolia for compute infrastructure. She locks `0.001 ETH` in `ClearaVault` on Sepolia.
   2. **Bob** owes Alice `0.0006 ETH` on Base Sepolia for data ingestion. He locks `0.0006 ETH` in `ClearaVault` on Base Sepolia.
   3. **Gross Exposure:** `0.0016 ETH` would traditionally move across bridges.
-  4. **GenLayer Resolution:** GenLayer verifies deposits via `strict_eq`, adjudicates the reciprocal relationship via AI consensus, and calculates the net debt:
+  4. **GenLayer Resolution:** GenLayer verifies deposits via `strict_eq`, adjudicates the reciprocal relationship via AI consensus (`run_nondet`, Tx `0x6b8d3511...`, `FINISHED_WITH_RETURN`), and calculates the exact net debt:
      $$\text{Net Residual} = 0.001 - 0.0006 = 0.0004\text{ ETH (Alice owes Bob)}$$
   5. **Local Vault Execution:**
      * Bob receives `0.0004 ETH` net residual on Ethereum Sepolia.
@@ -149,14 +149,15 @@ The complete Mode 1 Bilateral Netting lifecycle was executed across live testnet
 |---|---|---|---|---|
 | **1** | Collateral Lock | Sepolia (`11155111`) | Alice (`0x85B5...`) | `0.001 ETH` in state `1` (`LOCKED`) |
 | **1** | Collateral Lock | Base Sepolia (`84532`) | Bob (`0x7099...`) | `0.0006 ETH` in state `1` (`LOCKED`) |
-| **2** | Record Obligation 1 | Studio Next (`61997`) | [`0xe80ec8ca...`](foundry/evidence/live-lifecycle.log) | `obl-1` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
-| **2** | Record Obligation 2 | Studio Next (`61997`) | [`0x22d76a53...`](foundry/evidence/live-lifecycle.log) | `obl-2` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
-| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0xd8005517...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
-| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0x924c1daa...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
-| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0x08bfc728...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified |
-| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0x72254f5e...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified -> `status: VERIFIED` |
-| **4 & 5** | Settlement Certificate | Studio Next (`61997`) | Contract `0x17c33C39...` | Cryptographic certificate with source tx proofs |
-| **6** | **Native Vault Unlock** | **Ethereum Sepolia** | [`0xee575bb6...`](https://sepolia.etherscan.io/tx/0xee575bb6e1d5ebadc4aa4670e973b80ab9d39257a5e93d4fdbd22cabce5ceeae) | **Block `11723739`: Status `success` -> State `3` (`SETTLED`)** |
+| **2** | Record Obligation 1 | Studio Next (`61997`) | [`0x3ceb35c7...`](foundry/evidence/live-lifecycle.log) | `obl-1` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
+| **2** | Record Obligation 2 | Studio Next (`61997`) | [`0x2bfdd2a4...`](foundry/evidence/live-lifecycle.log) | `obl-2` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
+| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0xd65370cb...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
+| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0xfceab825...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
+| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0x29b59e1d...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified |
+| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0xd8972223...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified -> `status: VERIFIED` |
+| **4** | **AI Netting Adjudication** | **Studio Next (`61997`)** | [`0x6b8d3511...`](foundry/evidence/live-lifecycle.log) | **`status=5`, `FINISHED_WITH_RETURN` -> Net `0.0004 ETH`, `A_OWES_B`** |
+| **5** | Settlement Certificate | Studio Next (`61997`) | Contract `0xF75595...` | Emitted with AI Reason Codes and cryptographic proofs |
+| **6** | **Native Vault Unlock** | **Ethereum Sepolia** | [`0xd2d14af0...`](https://sepolia.etherscan.io/tx/0xd2d14af06b39f8ab9940c86507032b7f2412af9e96fb018d2aaff6acba59632b) | **Block `11723829`: Status `success` -> State `3` (`SETTLED`)** |
 
 ---
 
@@ -166,7 +167,7 @@ All protocol contracts are live on testnet and verified with immutable receipts:
 
 | Layer / Role | Network | Contract Address | Deployment Evidence | Status |
 |---|---|---|---|---|
-| **Cleara Coordinator** | **GenLayer Studio Next** (`61997`) | [`0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55`](foundry/evidence/deployed.json) | Tx: [`0x85b854a7...`](foundry/evidence/deployed.json)<br/>Receipt Status: `7` (`ACCEPTED/FINALIZED`), `FINISHED_WITH_RETURN`<br/>Runner: `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` | **LIVE** |
+| **Cleara Coordinator** | **GenLayer Studio Next** (`61997`) | [`0xF75595614305B537eA8bfD5fF3C53d074192eB2F`](foundry/evidence/deployed.json) | Tx: [`0xfb031403...`](foundry/evidence/deployed.json)<br/>Receipt Status: `5` (`ACCEPTED/FINALIZED`), `FINISHED_WITH_RETURN`<br/>Runner: `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` | **LIVE** |
 | **Execution Vault** | **Ethereum Sepolia** (`11155111`) | [`0x277341fc7c2481606ac69922a35b42344be5ec6f`](foundry/evidence/endpoints.json) | Tx: `0x47a53304...`<br/>Block `0xb2cd79`, 5,191 bytes runtime bytecode | **LIVE** |
 | **Execution Vault** | **Base Sepolia** (`84532`) | [`0xe2b01f99107a6ad24a6bdd8e34f7e864434c69ad`](foundry/evidence/endpoints.json) | Tx: `0xf7f1fcad...`<br/>Block `0x2cbb524`, 5,191 bytes runtime bytecode | **LIVE** |
 
@@ -190,6 +191,7 @@ Can validators reproduce the exact same normalized output?
 
 1. **Deterministic Facts (`strict_eq`):** Multi-validator receipt verification ensures deposit transactions, block numbers, sender addresses, and value transferred are identical across all committee validators.
 2. **Semantic Financial Judgment (`run_nondet`):** Optimistic Democracy evaluates relationship compatibility, asset matching, and validity of chain routes. Hard invariants (`reciprocal = a.party_a == b.party_b and a.party_b == b.party_a`) remain deterministic and cannot be overridden by AI.
+3. **Live Evidence:** Tx [`0x6b8d3511...`](foundry/evidence/live-lifecycle.log) confirmed `FINISHED_WITH_RETURN` on Studio Next with AI consensus!
 
 ---
 

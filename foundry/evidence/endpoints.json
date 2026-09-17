@@ -4,8 +4,8 @@
     "name": "GenLayer Studio Next",
     "rpc": "https://studio-next.genlayer.com/api",
     "explorer": "https://explorer-studio-dev.genlayer.com",
-    "contract": "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55",
-    "tx": "0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2",
+    "contract": "0xF75595614305B537eA8bfD5fF3C53d074192eB2F",
+    "tx": "0xfb031403168a89a5acf5ce07ad7cbb1a0bd61f7706e283cc95961b5c3973e2ee",
     "status": "ACCEPTED",
     "consensus": "MAJORITY_AGREE",
     "txExecutionResultName": "FINISHED_WITH_RETURN"
