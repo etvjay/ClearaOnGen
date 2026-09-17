@@ -123,41 +123,40 @@ Cleara supports three distinct settlement execution paths:
      * Bob's collateral on Base Sepolia is released locally.
 * **Impact:** **Zero tokens cross a bridge.** 60% of Alice's debt and 100% of Bob's debt are cleared with zero multichain slippage and zero bridge risk.
 
-### Mode 2 — Facility / LP Fronting & Collateral Claim
+### 🌟 Mode 2 — Facility / LP Fronting & Collateral Claim (Live Proven On-Chain)
 * **What it is:** For urgent, high-frequency, or asymmetric payouts where immediate destination liquidity is required.
-* **Execution:**
-  1. Alice locks collateral in `ClearaVault` on Chain A.
-  2. An approved Liquidity Provider (LP) registered in `ClearaFacilityManager` fronts immediate native funds to Bob locally on Chain B.
-  3. GenLayer verifies the fulfillment and issues a Settlement Certificate.
-  4. The LP claims the locked collateral on Chain A using the finalized certificate.
-* **Impact:** Instant cross-chain settlement with zero bridge latency, backed by decentralized credit facilities.
+* **Concrete Live Execution:**
+  1. **Alice** locks `0.0001 ETH` collateral in `ClearaVault` on Ethereum Sepolia (Tx `0xbb9e98c6...`, block `11723862`, state `1` = `LOCKED`).
+  2. **Bob (acting as LP)** fronts `0.0001 ETH` native funds directly to Alice locally on Base Sepolia Vault (`fulfillForCounterparty`, Tx `0xbab17b4f...`, block `46940763`).
+  3. GenLayer verifies the cross-chain receipt and relayer executes `claimLPCollateral` on Ethereum Sepolia Vault (Tx `0xf4a02218...`, block `11723867`).
+  4. Bob receives the reimbursed collateral on Sepolia, transitioning the deposit to `3` (`SETTLED`).
+* **Impact:** Instant zero-latency cross-chain settlement backed by decentralized credit facilities.
 
-### Mode 3 — Residual Bridge Routing
+### 🌟 Mode 3 — Residual Bridge Routing (Live Proven On-Chain)
 * **What it is:** When residual non-reciprocal debt cannot be netted and must be physically bridged.
-* **Execution:**
-  1. The vault interfaces with canonical native bridges (e.g. OP Standard Bridge or Arbitrum Native Bridge) via `MockBridgeAdapter.sol`.
-  2. Only the unnetted residual moves through the bridge.
-* **Impact:** Eliminates third-party wrapped bridge risks by restricting bridge volume to minimal net residuals.
+* **Concrete Live Execution:**
+  1. **Alice** locks `0.0001 ETH` in `ClearaVault` on Ethereum Sepolia (Tx `0x04f7b5b8...`, block `11723868`, state `1` = `LOCKED`).
+  2. Vault interfaces with `MockBridgeAdapter.sol` (`0x3f248d90...`) via `routeResidual` (Tx `0x1461f94d...`, block `11723869`).
+  3. Vault deposit transitions to state `2` (`ROUTED`), and the adapter receives the `0.0001 ETH` collateral into custody.
+* **Impact:** Eliminates third-party wrapped bridge risks by restricting bridge volume strictly to minimal net residuals.
 
 ---
 
-## 5. Live Multichain Proving Evidence (Mode 1 Netting)
+## 5. Live Multichain Proving Evidence (All Three Modes)
 
-The complete Mode 1 Bilateral Netting lifecycle was executed across live testnets and recorded in [`foundry/evidence/live-lifecycle.log`](foundry/evidence/live-lifecycle.log):
+All three protocol settlement execution paths have been proven live on testnets and recorded in [`foundry/evidence/all-three-modes.json`](foundry/evidence/all-three-modes.json):
 
-| Step | Operation | Network | Entity / Tx Hash | On-Chain Result |
+| Mode | Operation | Network | Transaction / Identifier | On-Chain Verification |
 |---|---|---|---|---|
-| **1** | Collateral Lock | Sepolia (`11155111`) | Alice (`0x85B5...`) | `0.001 ETH` in state `1` (`LOCKED`) |
-| **1** | Collateral Lock | Base Sepolia (`84532`) | Bob (`0x7099...`) | `0.0006 ETH` in state `1` (`LOCKED`) |
-| **2** | Record Obligation 1 | Studio Next (`61997`) | [`0x3ceb35c7...`](foundry/evidence/live-lifecycle.log) | `obl-1` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
-| **2** | Record Obligation 2 | Studio Next (`61997`) | [`0x2bfdd2a4...`](foundry/evidence/live-lifecycle.log) | `obl-2` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
-| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0xd65370cb...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
-| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0xfceab825...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
-| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0x29b59e1d...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified |
-| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0xd8972223...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified -> `status: VERIFIED` |
-| **4** | **AI Netting Adjudication** | **Studio Next (`61997`)** | [`0x6b8d3511...`](foundry/evidence/live-lifecycle.log) | **`status=5`, `FINISHED_WITH_RETURN` -> Net `0.0004 ETH`, `A_OWES_B`** |
-| **5** | Settlement Certificate | Studio Next (`61997`) | Contract `0xF75595...` | Emitted with AI Reason Codes and cryptographic proofs |
-| **6** | **Native Vault Unlock** | **Ethereum Sepolia** | [`0xd2d14af0...`](https://sepolia.etherscan.io/tx/0xd2d14af06b39f8ab9940c86507032b7f2412af9e96fb018d2aaff6acba59632b) | **Block `11723829`: Status `success` -> State `3` (`SETTLED`)** |
+| **Mode 1** | Reciprocal Deposits | Sepolia & Base | Deposit `0xa5f9c71c...` | `0.001 ETH` (Sepolia) & `0.0006 ETH` (Base) locked |
+| **Mode 1** | `strict_eq` Multi-Validator | Studio Next (`61997`) | Tx `0xd65370cb...`, `0xfceab825...` | Receipts verified byte-for-byte -> `VERIFIED` |
+| **Mode 1** | **AI Netting Adjudication** | **Studio Next (`61997`)** | [`0x6b8d3511...`](foundry/evidence/live-lifecycle.log) | **`FINISHED_WITH_RETURN` -> Net `0.0004 ETH`, `A_OWES_B`** |
+| **Mode 1** | **Vault Unlock & Refund** | **Ethereum Sepolia** | [`0xd2d14af0...`](https://sepolia.etherscan.io/tx/0xd2d14af06b39f8ab9940c86507032b7f2412af9e96fb018d2aaff6acba59632b) | **Block `11723829`: `success` -> State `3` (`SETTLED`)** |
+| **Mode 2** | Collateral Lock | Ethereum Sepolia | [`0xbb9e98c6...`](https://sepolia.etherscan.io/tx/0xbb9e98c65da146fe28dcae7cbd94d0102ffa400679f315ec910b0bd0f46ca446) | Block `11723862`: `0.0001 ETH` state `1` (`LOCKED`) |
+| **Mode 2** | LP Local Fulfillment | Base Sepolia | [`0xbab17b4f...`](https://sepolia.basescan.org/tx/0xbab17b4f9fb07d51e687f865f1f5f188a58d81fbe27a27c0385c2489e3ed53a7) | Block `46940763`: LP fronted `0.0001 ETH` |
+| **Mode 2** | **LP Collateral Claim** | **Ethereum Sepolia** | [`0xf4a02218...`](https://sepolia.etherscan.io/tx/0xf4a022185eada59182c3cec1f6ba9a25e216b6cba25dde2784033564b89a3510) | **Block `11723867`: `success` -> State `3` (`SETTLED`)** |
+| **Mode 3** | Collateral Lock | Ethereum Sepolia | [`0x04f7b5b8...`](https://sepolia.etherscan.io/tx/0x04f7b5b8db5161147a718475db76ed445c2892fd46e3843b51a7fad4727de470) | Block `11723868`: `0.0001 ETH` state `1` (`LOCKED`) |
+| **Mode 3** | **Route Residual to Bridge** | **Ethereum Sepolia** | [`0x1461f94d...`](https://sepolia.etherscan.io/tx/0x1461f94d72e2851fc6ee59a74810874a6ef75e6f349897c1db5513df7f36f3c9) | **Block `11723869`: Adapter funded +0.0001 ETH -> State `2` (`ROUTED`)** |
 
 ---
 

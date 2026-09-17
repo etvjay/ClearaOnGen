@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-09-17T12:57:38.562Z",
+  "modes": {
+    "mode1": {
+      "status": "VERIFIED_LIVE",
+      "genlayerCoordinator": "0xF75595614305B537eA8bfD5fF3C53d074192eB2F",
+      "obligationId": "obl-1",
+      "mode": "BILATERAL_NETTING",
+      "netAmount": "400000000000000",
+      "netDirection": "A_OWES_B",
+      "adjudicationTx": "0x6b8d351170b8f127df9f0fe89b11aece834780bc4db2b1e879bc209b7d125e6b",
+      "sepoliaUnlockTx": "0xd2d14af06b39f8ab9940c86507032b7f2412af9e96fb018d2aaff6acba59632b",
+      "sepoliaDepositId": "0xa5f9c71cbefe05bb7c2126d7816cce04e7890bccd038733590543e95ab143f28",
+      "sepoliaFinalState": "SETTLED (3)"
+    },
+    "mode2": {
+      "status": "PROVEN_LIVE",
+      "obligationId": "0x642a953239020061965b0f987cda72529e2331fe48999effcfe126ac77db8e99",
+      "collateralAmount": "100000000000000",
+      "sepoliaLockTx": "0xbb9e98c65da146fe28dcae7cbd94d0102ffa400679f315ec910b0bd0f46ca446",
+      "sepoliaLockBlock": "11723862",
+      "baseLpFulfillmentTx": "0xbab17b4f9fb07d51e687f865f1f5f188a58d81fbe27a27c0385c2489e3ed53a7",
+      "baseLpFulfillmentBlock": "46940763",
+      "lpAddress": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "sepoliaLpClaimTx": "0xf4a022185eada59182c3cec1f6ba9a25e216b6cba25dde2784033564b89a3510",
+      "sepoliaLpClaimBlock": "11723867",
+      "finalState": "SETTLED (3)"
+    },
+    "mode3": {
+      "status": "PROVEN_LIVE",
+      "obligationId": "0x12378fb190679a565cee4f8df1e0c4f6b26d25c0fb48fb700b5efcd732e0885a",
+      "residualAmount": "100000000000000",
+      "sepoliaLockTx": "0x04f7b5b8db5161147a718475db76ed445c2892fd46e3843b51a7fad4727de470",
+      "sepoliaLockBlock": "11723868",
+      "sepoliaRouteResidualTx": "0x1461f94d72e2851fc6ee59a74810874a6ef75e6f349897c1db5513df7f36f3c9",
+      "sepoliaRouteResidualBlock": "11723869",
+      "bridgeAdapterAddress": "0x3f248d90bc322aefa30035461af986db3adbb29a",
+      "bridgeBalanceDelta": "100000000000000",
+      "finalState": "ROUTED (2)"
+    }
+  }
+}
