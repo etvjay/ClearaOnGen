@@ -1,16 +1,20 @@
 No files changed, compilation skipped
 
-Ran 10 tests for test/ClearaVault.t.sol:ClearaVaultTest
-[PASS] test_ClaimLPCollateral_Mode2() (gas: 178448)
-[PASS] test_DepositLocks() (gas: 136071)
-[PASS] test_FacilityManager() (gas: 60709)
-[PASS] test_FulfillByLP_Mode2() (gas: 86665)
-[PASS] test_Mode1_BilateralNetting_EndToEnd() (gas: 1426892)
-[PASS] test_Mode2_FacilityLPFronting_EndToEnd() (gas: 1420824)
-[PASS] test_Mode3_ResidualBridgeRouting_EndToEnd() (gas: 160175)
-[PASS] test_Revert_OnlyRelayer() (gas: 139712)
-[PASS] test_RouteResidual_Mode3() (gas: 158265)
-[PASS] test_UnlockWithCertificate_Mode1_Netting() (gas: 188730)
-Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 5.38ms (853.46µs CPU time)
+Ran 14 tests for test/ClearaVault.t.sol:ClearaVaultTest
+[PASS] test_ClaimLPCollateral_Mode2() (gas: 181107)
+[PASS] test_DepositLocks() (gas: 158268)
+[PASS] test_FacilityManager() (gas: 60820)
+[PASS] test_FacilityManager_WithdrawCollateral() (gas: 82867)
+[PASS] test_FulfillByLP_Mode2() (gas: 86710)
+[PASS] test_MockBridgeAdapter_AccessControl() (gas: 21927)
+[PASS] test_Mode1_BilateralNetting_EndToEnd() (gas: 1541054)
+[PASS] test_Mode2_FacilityLPFronting_EndToEnd() (gas: 1512721)
+[PASS] test_Mode3_ResidualBridgeRouting_EndToEnd() (gas: 162902)
+[PASS] test_Revert_OnlyRelayer() (gas: 161975)
+[PASS] test_RouteResidual_Mode3() (gas: 161059)
+[PASS] test_SweepDust_ProtectsLockedCollateral() (gas: 172009)
+[PASS] test_UnlockWithCertificate_Mode1_Netting() (gas: 191524)
+[PASS] test_Vault_TransferOwnership() (gas: 19433)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 2.50ms (1.28ms CPU time)
 
-Ran 1 test suite in 9.92ms (5.38ms CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)
+Ran 1 test suite in 4.75ms (2.50ms CPU time): 14 tests passed, 0 failed, 0 skipped (14 total tests)

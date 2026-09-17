@@ -48,10 +48,10 @@
 
 ## 4. What Is Tested
 
-* **EVM Vaults:** 7/7 Foundry tests passing 100% (`forge test -vv`).
+* **EVM Vaults:** 14/14 Foundry tests passing 100% (`forge test -vv`).
 * **GenLayer Syntax:** Python compilation clean (`python3 -m py_compile contracts/cleara_coordinator.py`).
-* **Governance Integrity:** `node scripts/check-foundry` exits code 0 with 7 admitted claims.
-* **Live Proving Lifecycle:** Executed end-to-end across GenLayer Studio Next and Ethereum Sepolia (`foundry/evidence/live-lifecycle.log`).
+* **Governance Integrity:** `node scripts/check-foundry` exits code 0 with 8 admitted claims and 0 critical open gaps.
+* **Live Proving Lifecycle:** All three settlement modes (Mode 1 Netting, Mode 2 LP Fronting, Mode 3 Bridge Routing) executed end-to-end and proven live on testnets (`foundry/evidence/all-three-modes.json`).
 
 ---
 

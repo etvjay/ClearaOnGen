@@ -13,11 +13,22 @@ contract MockBridgeAdapter is IBridgeAdapter {
         emit Dispatched(obligationId, amount, recipient, targetChain);
     }
 
+    address public owner;
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "MOCK: not owner");
+        _;
+    }
+
+    constructor() {
+        owner = msg.sender;
+    }
+
     function estimateFee(bytes32) external pure override returns (uint256) {
         return 0;
     }
 
-    function withdraw(address payable to) external {
+    function withdraw(address payable to) external onlyOwner {
         (bool ok,) = to.call{value: address(this).balance}("");
         require(ok, "MOCK: withdraw failed");
     }

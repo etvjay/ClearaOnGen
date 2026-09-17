@@ -14,9 +14,9 @@ Implement `ClearaCoordinator` in GenVM Python, validate syntax and methods, and 
 
 ## Deployed Facts
 * Network: Studio Next (`chain 61997`)
-* Contract Address: `0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55`
-* Transaction Hash: `0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2`
-* Consensus Status: `7` (`ACCEPTED/FINALIZED`), `txExecutionResultName: "FINISHED_WITH_RETURN"`
+* Contract Address: `0xF75595614305B537eA8bfD5fF3C53d074192eB2F`
+* Transaction Hash: `0xfb031403168a89a5acf5ce07ad7cbb1a0bd61f7706e283cc95961b5c3973e2ee`
+* Consensus Status: `5` (`ACCEPTED/FINALIZED`), `txExecutionResultName: "FINISHED_WITH_RETURN"`
 * Runner: `5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng`
 
 ## Exit Gate

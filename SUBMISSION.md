@@ -6,7 +6,7 @@
 * **Repository:** [https://github.com/etvjay/ClearaOnGen](https://github.com/etvjay/ClearaOnGen)
 * **Team:** `etvjay` & Cleara Protocol Core
 * **Standard:** Built and verified under [`BUILD_FOUNDRY.md v1.0`](BUILD_FOUNDRY.md)
-* **Verification Gate:** `./scripts/verify` (100% PASS: 7/7 Forge tests, syntax valid, control plane verified)
+* **Verification Gate:** `./scripts/verify` (100% PASS: 14/14 Forge tests, syntax valid, control plane verified)
 
 ---
 
@@ -203,7 +203,7 @@ This repository adheres strictly to the **BUILD_FOUNDRY v1.0** engineering stand
 
 * **Control Plane Integrity (`./scripts/check-foundry`):** Validates that all claims are backed by physical evidence and that all gaps are tracked with zero open critical issues.
 * **Claims Ledger (`foundry/claims.jsonl`):** 8 formally admitted claims (`CLM-001` through `CLM-008`) with real evidence paths (all 8 in `LIVE` or `TESTED` state).
-* **Deterministic Unit Testing:** 10/10 passing Foundry unit tests (`ClearaVaultTest`).
+* **Deterministic Unit Testing:** 14/14 passing Foundry unit tests (`ClearaVaultTest`).
 * **Single-Command Verification:** `./scripts/verify` runs the full test suite and control plane validator sequentially.
 
 ---
@@ -245,7 +245,7 @@ import("genlayer-js").then(async ({ createClient }) => {
 - [x] **Dual-chain EVM vaults deployed on Sepolia and Base Sepolia** with verified runtime bytecode.
 - [x] **`strict_eq` RPC verification implemented and proven live** across committee consensus.
 - [x] **Optimistic Democracy AI consensus implemented and proven live** (`0x6b8d3511...`, `FINISHED_WITH_RETURN`).
-- [x] **Complete Foundry unit test suite (10/10 PASS)** covering all 3 settlement modes.
+- [x] **Complete Foundry unit test suite (14/14 PASS)** covering all 3 settlement modes.
 - [x] **All three settlement modes proven live on testnets** (Mode 1 Netting, Mode 2 LP Fronting, Mode 3 Bridge Routing).
 - [x] **Clean public GitHub repository adhering to `BUILD_FOUNDRY.md`**.
 - [x] **Zero secret leaks, clean environment templates, strict `.gitignore`**.

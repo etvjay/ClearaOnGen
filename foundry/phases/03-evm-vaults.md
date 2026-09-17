@@ -14,14 +14,21 @@ Implement native collateral vaults in Solidity for Ethereum Sepolia (11155111) a
 
 ## Verification
 * Test Suite: `forge test -vv`
-* Results: 7 passed, 0 failed, 0 skipped.
+* Results: 14 passed, 0 failed, 0 skipped.
   * `test_ClaimLPCollateral_Mode2`: PASS
   * `test_DepositLocks`: PASS
   * `test_FacilityManager`: PASS
+  * `test_FacilityManager_WithdrawCollateral`: PASS
   * `test_FulfillByLP_Mode2`: PASS
+  * `test_MockBridgeAdapter_AccessControl`: PASS
+  * `test_Mode1_BilateralNetting_EndToEnd`: PASS
+  * `test_Mode2_FacilityLPFronting_EndToEnd`: PASS
+  * `test_Mode3_ResidualBridgeRouting_EndToEnd`: PASS
   * `test_Revert_OnlyRelayer`: PASS
   * `test_RouteResidual_Mode3`: PASS
+  * `test_SweepDust_ProtectsLockedCollateral`: PASS
   * `test_UnlockWithCertificate_Mode1_Netting`: PASS
+  * `test_Vault_TransferOwnership`: PASS
 
 ## Deployed Addresses
 * Ethereum Sepolia Vault: `0x277341fc7c2481606ac69922a35b42344be5ec6f`

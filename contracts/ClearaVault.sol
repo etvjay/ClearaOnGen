@@ -18,6 +18,7 @@ contract ClearaVault is IClearaVault {
     // Prevent replay of certificates
     mapping(bytes32 => bool) public certificateUsed;
 
+    uint256 public totalLockedCollateral;
     address public relayer;
     address public owner;
 
@@ -41,6 +42,11 @@ contract ClearaVault is IClearaVault {
         relayer = _relayer;
     }
 
+    function transferOwnership(address newOwner) external onlyOwner {
+        require(newOwner != address(0), "CLEARA: zero owner");
+        owner = newOwner;
+    }
+
     // ---------- Mode 0: deposit ----------
     function deposit(bytes32 obligationId, address intendedRecipient, bytes32 targetChain) external payable override {
         require(msg.value > 0, "CLEARA: zero value");
@@ -55,6 +61,7 @@ contract ClearaVault is IClearaVault {
             state: ObligationState.LOCKED,
             targetChain: targetChain
         });
+        totalLockedCollateral += msg.value;
 
         emit Deposited(obligationId, msg.sender, intendedRecipient, msg.value, targetChain);
     }
@@ -78,7 +85,9 @@ contract ClearaVault is IClearaVault {
 
         certificateUsed[genlayerTxHash] = true;
         rec.state = ObligationState.SETTLED;
+        totalLockedCollateral -= rec.amount;
 
+        // Effects then interactions
         if (netAmount > 0) {
             (bool ok1,) = recipient.call{value: netAmount}("");
             require(ok1, "CLEARA: net send failed");
@@ -86,11 +95,12 @@ contract ClearaVault is IClearaVault {
         if (refundAmount > 0) {
             (bool ok2,) = payable(rec.depositor).call{value: refundAmount}("");
             require(ok2, "CLEARA: refund failed");
-            emit Refunded(obligationId, rec.depositor, refundAmount);
         }
-        // Dust stays in vault for owner sweep if needed (should be 0).
 
         emit Settled(obligationId, recipient, netAmount, refundAmount, genlayerTxHash);
+        if (refundAmount > 0) {
+            emit Refunded(obligationId, rec.depositor, refundAmount);
+        }
     }
 
     // ---------- Mode 2: LP fronts payout on this chain ----------
@@ -124,6 +134,7 @@ contract ClearaVault is IClearaVault {
 
         certificateUsed[genlayerTxHash] = true;
         rec.state = ObligationState.SETTLED;
+        totalLockedCollateral -= rec.amount;
 
         uint256 amount = rec.amount;
         (bool ok,) = lpRecipient.call{value: amount}("");
@@ -139,6 +150,7 @@ contract ClearaVault is IClearaVault {
         require(bridgeAdapter != address(0), "CLEARA: zero adapter");
 
         rec.state = ObligationState.ROUTED;
+        totalLockedCollateral -= rec.amount;
         uint256 amount = rec.amount;
 
         // Dispatch via adapter; adapter is trusted to handle targetChain.
@@ -156,7 +168,11 @@ contract ClearaVault is IClearaVault {
     // ---------- emergency ----------
     function sweepDust(address payable to) external onlyOwner {
         require(to != address(0), "CLEARA: zero to");
-        (bool ok,) = to.call{value: address(this).balance}("");
+        uint256 excess = address(this).balance > totalLockedCollateral
+            ? address(this).balance - totalLockedCollateral
+            : 0;
+        require(excess > 0, "CLEARA: no sweepable excess");
+        (bool ok,) = to.call{value: excess}("");
         require(ok, "CLEARA: sweep failed");
     }
 

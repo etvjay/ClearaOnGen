@@ -91,7 +91,7 @@ class ClearaCoordinator(gl.contract.Contract):
                     "tx_hash": tx_hash.lower(),
                     "from": str(receipt.get("from", "")).lower(),
                     "to": str(receipt.get("to", "")).lower(),
-                    "block_number": str(receipt.get("blockNumber", "")),
+                    "block_number": str(int(receipt.get("blockNumber", "0x0"), 16)),
                     "value_atto": str(int(tx.get("value", "0x0"), 16)),
                 },
                 sort_keys=True,
@@ -274,6 +274,15 @@ Respond only JSON:
         b = json.loads(self.obligations[obligation_b_id])
         if a["status"] != "VERIFIED" or b["status"] != "VERIFIED":
             raise gl.vm.UserError("[EXPECTED] both obligations must be VERIFIED")
+
+        # Strict deterministic invariants enforced in Python (cannot be bypassed by LLM)
+        if a["party_a"].lower() != b["party_b"].lower() or a["party_b"].lower() != b["party_a"].lower():
+            raise gl.vm.UserError("[EXPECTED] parties are not reciprocal")
+        if a["currency"].upper() != b["currency"].upper():
+            raise gl.vm.UserError("[EXPECTED] currency mismatch")
+        if a["chain_a"] != b["chain_b"] or a["chain_b"] != b["chain_a"]:
+            raise gl.vm.UserError("[EXPECTED] chain routes are not reciprocal")
+
         decision = self._adjudicate_pair(a, b)
         if not decision["eligible"]:
             raise gl.vm.UserError("[EXPECTED] semantic adjudication rejected clearing")
@@ -309,7 +318,7 @@ Respond only JSON:
         if obl["status"] != "CLEARING":
             raise gl.vm.UserError("[EXPECTED] must be CLEARING")
         obl["status"] = "CLEARED"
-        obl["cleared_at_block"] = str(gl.block.number)
+        obl["cleared_at_block"] = obl.get("sepolia_proof_tx", "")[:10] or "CLEARED"
         self.obligations[obligation_id] = json.dumps(obl, sort_keys=True)
 
     @gl.public.write

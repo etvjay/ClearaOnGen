@@ -9,6 +9,6 @@
 | **Sepolia Execution Vault** | EVM (Solidity 0.8.20) | `LIVE` | [`foundry/evidence/endpoints.json`](../../foundry/evidence/endpoints.json) | ETH native collateral (`0x277341fc...`) |
 | **Base Sepolia Vault** | EVM (Solidity 0.8.20) | `LIVE` | [`foundry/evidence/endpoints.json`](../../foundry/evidence/endpoints.json) | ETH native collateral (`0xe2b01f99...`) |
 | **Mode 1 Netting Unlock** | `ClearaVault.sol` | `LIVE_PROVEN` | [`foundry/evidence/live-lifecycle.log`](../../foundry/evidence/live-lifecycle.log) | Unlocked on Sepolia block 11723829 (Tx `0xd2d14af0...`) |
-| **Mode 2 LP Fronting** | `ClearaVault.sol` | `TESTED` | [`foundry/evidence/forge-test.log`](../../foundry/evidence/forge-test.log) | LP claims locked collateral via certificate |
-| **Mode 3 Bridge Routing** | `ClearaVault.sol` | `TESTED` | [`foundry/evidence/forge-test.log`](../../foundry/evidence/forge-test.log) | Residual routing fallback |
-| **Control Plane Integrity** | `check-foundry` | `VERIFIED` | [`scripts/check-foundry`](../../scripts/check-foundry) | 0 critical open gaps; 7 verified claims |
+| **Mode 2 LP Fronting** | `ClearaVault.sol` | `LIVE_PROVEN` | [`foundry/evidence/all-three-modes.json`](../../foundry/evidence/all-three-modes.json) | Fronted on Base block 46940763; claimed on Sepolia block 11723867 |
+| **Mode 3 Bridge Routing** | `ClearaVault.sol` | `LIVE_PROVEN` | [`foundry/evidence/all-three-modes.json`](../../foundry/evidence/all-three-modes.json) | Routed to MockBridgeAdapter on Sepolia block 11723869 |
+| **Control Plane Integrity** | `check-foundry` | `VERIFIED` | [`scripts/check-foundry`](../../scripts/check-foundry) | 0 critical open gaps; 8 verified claims |

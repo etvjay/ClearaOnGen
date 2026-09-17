@@ -208,7 +208,7 @@ cd ClearaOnGen
 ```
 
 ### Verification Pipeline:
-1. **EVM Vault Test Suite (`forge test -vv`):** 7/7 passing unit tests covering Mode 1 bilateral netting, Mode 2 LP fronting, Mode 3 bridge routing, balance locking, facility registry, and relayer access control.
+1. **EVM Vault Test Suite (`forge test -vv`):** 14/14 passing unit tests covering Mode 1 bilateral netting, Mode 2 LP fronting, Mode 3 bridge routing, balance locking, facility registry, relayer access control, sweep protection, collateral withdrawal, and multi-chain simulations.
 2. **GenLayer Coordinator Syntax (`python3 -m py_compile`):** Validates the Python intelligent contract.
 3. **Control Plane Integrity (`node scripts/check-foundry`):** Validates that all claims in `foundry/claims.jsonl` are backed by genuine evidence files and that `foundry/gaps.jsonl` has zero unresolved critical gaps.
 
@@ -234,7 +234,7 @@ cd ClearaOnGen
 │
 ├── foundry/                  # Control plane under BUILD_FOUNDRY.md
 │   ├── state.json            # Machine-readable project state (E2E_VERIFIED)
-│   ├── claims.jsonl          # Evidence-backed claim ledger (7 claims admitted)
+│   ├── claims.jsonl          # Evidence-backed claim ledger (8 claims admitted)
 │   ├── gaps.jsonl            # Gap closure ledger (0 open critical gaps)
 │   ├── assumptions.md        # Technical assumptions ledger
 │   ├── contradictions.md     # Resolved contradictions ledger
@@ -243,7 +243,7 @@ cd ClearaOnGen
 │   └── evidence/             # Verified receipts, logs, and endpoints
 │
 ├── test/
-│   └── ClearaVault.t.sol     # 7/7 passing Foundry test suite
+│   └── ClearaVault.t.sol     # 14/14 passing Foundry test suite
 │
 └── scripts/
     ├── check-foundry         # Control plane integrity validator

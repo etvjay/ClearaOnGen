@@ -41,6 +41,16 @@ contract ClearaFacilityManager {
         emit LPCollateralAdded(msg.sender, msg.value);
     }
 
+    event LPCollateralWithdrawn(address indexed lp, uint256 amount);
+
+    function withdrawCollateral(uint256 amount) external {
+        require(lpCollateral[msg.sender] >= amount, "FACILITY: insufficient collateral");
+        lpCollateral[msg.sender] -= amount;
+        (bool ok,) = msg.sender.call{value: amount}("");
+        require(ok, "FACILITY: withdraw failed");
+        emit LPCollateralWithdrawn(msg.sender, amount);
+    }
+
     function assignFacility(bytes32 obligationId, address lp) external onlyOwner {
         require(isLP[lp], "FACILITY: not lp");
         lpForObligation[obligationId] = lp;

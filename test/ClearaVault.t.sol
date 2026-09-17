@@ -233,4 +233,69 @@ contract ClearaVaultTest is Test {
         assertEq(uint8(lockStAfter), uint8(IClearaVault.ObligationState.ROUTED));
         assertEq(address(bridge).balance, 1.5 ether, "Bridge adapter custody verified");
     }
+
+    // =========================================================================
+    // === SECURITY REMEDIATION SUITE (3-AGENT COURT FINDINGS) ===
+    // =========================================================================
+
+    function test_SweepDust_ProtectsLockedCollateral() public {
+        bytes32 oblId = keccak256("locked-dep");
+        vm.prank(alice);
+        vault.deposit{value: 5 ether}(oblId, bob, CHAIN_BASE);
+        assertEq(vault.totalLockedCollateral(), 5 ether);
+
+        // Owner cannot sweep locked collateral
+        vm.expectRevert("CLEARA: no sweepable excess");
+        vault.sweepDust(payable(alice));
+
+        // Send untracked excess ETH directly to vault
+        vm.deal(address(vault), 6 ether); // 1 ether untracked excess
+        uint256 aliceBefore = alice.balance;
+        vault.sweepDust(payable(alice));
+        assertEq(alice.balance, aliceBefore + 1 ether, "only excess swept");
+        assertEq(address(vault).balance, 5 ether, "locked collateral intact");
+    }
+
+    function test_FacilityManager_WithdrawCollateral() public {
+        facility.registerLP(lp);
+        vm.deal(lp, 10 ether);
+        vm.prank(lp);
+        facility.addCollateral{value: 4 ether}();
+        assertEq(facility.lpCollateral(lp), 4 ether);
+
+        uint256 lpBalBefore = lp.balance;
+        vm.prank(lp);
+        facility.withdrawCollateral(2 ether);
+        assertEq(lp.balance, lpBalBefore + 2 ether);
+        assertEq(facility.lpCollateral(lp), 2 ether);
+
+        // Cannot withdraw more than collateral
+        vm.prank(lp);
+        vm.expectRevert("FACILITY: insufficient collateral");
+        facility.withdrawCollateral(3 ether);
+    }
+
+    function test_MockBridgeAdapter_AccessControl() public {
+        vm.deal(address(bridge), 2 ether);
+        // Non-owner cannot withdraw
+        vm.prank(alice);
+        vm.expectRevert("MOCK: not owner");
+        bridge.withdraw(payable(alice));
+
+        // Owner can withdraw
+        uint256 aliceBefore = alice.balance;
+        bridge.withdraw(payable(alice));
+        assertEq(alice.balance, aliceBefore + 2 ether);
+        assertEq(address(bridge).balance, 0);
+    }
+
+    function test_Vault_TransferOwnership() public {
+        address newOwner = makeAddr("newOwner");
+        vault.transferOwnership(newOwner);
+        assertEq(vault.owner(), newOwner);
+
+        // Old owner cannot set relayer
+        vm.expectRevert("CLEARA: not owner");
+        vault.setRelayer(makeAddr("newRelayer"));
+    }
 }

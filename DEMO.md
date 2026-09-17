@@ -13,7 +13,7 @@ To run the complete automated test and control plane verification:
 ```
 
 Expected output:
-* 7/7 Foundry unit tests pass on EVM Vault contracts.
+* 14/14 Foundry unit tests pass on EVM Vault contracts.
 * GenLayer intelligent contract passes Python syntax verification.
 * Foundry control plane validator confirms all claims and gaps conform to `BUILD_FOUNDRY.md` v1.0.
 
@@ -22,9 +22,9 @@ Expected output:
 ## 2. Live On-Chain Architecture Inspection
 
 ### GenLayer Studio Next Coordinator (Chain 61997)
-* **Contract:** `0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55`
-* **Deploy Tx:** `0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2`
-* **Explorer URL:** `https://explorer-studio-dev.genlayer.com`
+* **Contract:** `0xF75595614305B537eA8bfD5fF3C53d074192eB2F`
+* **Deploy Tx:** `0xfb031403168a89a5acf5ce07ad7cbb1a0bd61f7706e283cc95961b5c3973e2ee`
+* **Explorer URL:** `https://studio-next.genlayer.com`
 
 Inspect obligations live via Node.js:
 ```bash
@@ -33,7 +33,7 @@ import("genlayer-js").then(async ({ createClient }) => {
   const { studioDevnet } = await import("genlayer-js/chains");
   const studioNext = { ...studioDevnet, id: 61997, name: "GenLayer Studio Next", rpcUrls: { default: { http: ["https://studio-next.genlayer.com/api"] } } };
   const client = createClient({ chain: studioNext });
-  const list = await client.readContract({ address: "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55", functionName: "list_obligations", args: [] });
+  const list = await client.readContract({ address: "0xF75595614305B537eA8bfD5fF3C53d074192eB2F", functionName: "list_obligations", args: [] });
   console.log("Obligations:", list);
 });
 '
@@ -45,11 +45,11 @@ import("genlayer-js").then(async ({ createClient }) => {
 
 ### Ethereum Sepolia Vault (`11155111`)
 * **Address:** `0x277341fc7c2481606ac69922a35b42344be5ec6f`
-* **Verified Locked Deposit:** `0x365f1ee2f03c0894860f9e20e26a8619a9787ae823eb5ca0f7e40ff932c8bbab` (0.001 ETH)
+* **Verified Settled Deposit (Mode 1):** `0xa5f9c71cbefe05bb7c2126d7816cce04e7890bccd038733590543e95ab143f28` (0.001 ETH, state: `3 = SETTLED`)
 
 Verify via `cast`:
 ```bash
-cast call 0x277341fc7c2481606ac69922a35b42344be5ec6f "getDeposit(bytes32)(address,address,uint256,uint8,bytes32)" 0x365f1ee2f03c0894860f9e20e26a8619a9787ae823eb5ca0f7e40ff932c8bbab --rpc-url https://ethereum-sepolia-rpc.publicnode.com
+cast call 0x277341fc7c2481606ac69922a35b42344be5ec6f "getDeposit(bytes32)(address,address,uint256,uint8,bytes32)" 0xa5f9c71cbefe05bb7c2126d7816cce04e7890bccd038733590543e95ab143f28 --rpc-url https://ethereum-sepolia-rpc.publicnode.com
 ```
 
 ### Base Sepolia Vault (`84532`)
