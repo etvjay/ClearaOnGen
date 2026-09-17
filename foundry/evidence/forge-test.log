@@ -1,0 +1,13 @@
+No files changed, compilation skipped
+
+Ran 7 tests for test/ClearaVault.t.sol:ClearaVaultTest
+[PASS] test_ClaimLPCollateral_Mode2() (gas: 178448)
+[PASS] test_DepositLocks() (gas: 136060)
+[PASS] test_FacilityManager() (gas: 60697)
+[PASS] test_FulfillByLP_Mode2() (gas: 86643)
+[PASS] test_Revert_OnlyRelayer() (gas: 139801)
+[PASS] test_RouteResidual_Mode3() (gas: 158342)
+[PASS] test_UnlockWithCertificate_Mode1_Netting() (gas: 188730)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 3.58ms (566.39µs CPU time)
+
+Ran 1 test suite in 19.99ms (3.58ms CPU time): 7 tests passed, 0 failed, 0 skipped (7 total tests)

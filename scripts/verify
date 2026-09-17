@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "========================================================"
+echo "=== Cleara on GenLayer — Canonical Verification Suite ==="
+echo "========================================================"
+
+echo ""
+echo "[1/3] Compiling and Testing EVM Settlement Vaults (Foundry)..."
+forge test -vv
+
+echo ""
+echo "[2/3] Validating GenLayer Coordinator Syntax..."
+python3 -m py_compile contracts/cleara_coordinator.py
+echo "✓ GenLayer contract syntax valid"
+
+echo ""
+echo "[3/3] Verifying Foundry Control Plane Integrity..."
+node scripts/check-foundry
+
+echo ""
+echo "========================================================"
+echo "=== ALL CANONICAL VERIFICATION CHECKS PASSED (100%) ==="
+echo "========================================================"

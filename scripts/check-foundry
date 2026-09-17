@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+/**
+ * scripts/check-foundry
+ * Canonical control-plane integrity validator under BUILD_FOUNDRY.md v1.0.
+ */
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const ROOT = path.resolve(__dirname, '..');
+const FOUNDRY_DIR = path.join(ROOT, 'foundry');
+
+const ALLOWED_STATES = new Set([
+  'PROPOSED',
+  'IMPLEMENTED',
+  'TESTED',
+  'INTEGRATED',
+  'E2E_VERIFIED',
+  'LIVE_DEMONSTRATED',
+  'LIVE',
+  'MONITORED',
+  'PARTIAL',
+  'BLOCKED_EXTERNAL',
+  'BLOCKED_INTERNAL',
+  'DEFERRED',
+  'REJECTED',
+  'FUTURE'
+]);
+
+const ALLOWED_GAP_STATUSES = new Set([
+  'DISCOVERED',
+  'REPRODUCED',
+  'CLASSIFIED',
+  'CLOSURE_DEFINED',
+  'IMPLEMENTED',
+  'VERIFIED_LOCAL',
+  'VERIFIED_SYSTEM',
+  'VERIFIED_LIVE',
+  'GUARDED',
+  'CLOSED',
+  'BLOCKED_EXTERNAL',
+  'BLOCKED_INTERNAL',
+  'DEFERRED',
+  'REJECTED_NOT_A_GAP',
+  'DUPLICATE'
+]);
+
+let errors = [];
+
+function assert(condition, message) {
+  if (!condition) {
+    errors.push(message);
+  }
+}
+
+// 1. Check state.json
+const stateFile = path.join(FOUNDRY_DIR, 'state.json');
+assert(fs.existsSync(stateFile), 'foundry/state.json does not exist');
+if (fs.existsSync(stateFile)) {
+  try {
+    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    assert(state.project, 'state.json missing project name');
+    assert(ALLOWED_STATES.has(state.status) || state.status === 'IN_PROGRESS', `Invalid state.json status: ${state.status}`);
+  } catch (e) {
+    errors.push(`Failed to parse foundry/state.json: ${e.message}`);
+  }
+}
+
+// 2. Check gaps.jsonl
+const gapsFile = path.join(FOUNDRY_DIR, 'gaps.jsonl');
+assert(fs.existsSync(gapsFile), 'foundry/gaps.jsonl does not exist');
+if (fs.existsSync(gapsFile)) {
+  const lines = fs.readFileSync(gapsFile, 'utf8').trim().split('\n').filter(Boolean);
+  lines.forEach((line, idx) => {
+    try {
+      const gap = JSON.parse(line);
+      assert(gap.id, `Gap line ${idx + 1} missing id`);
+      assert(gap.title, `Gap ${gap.id} missing title`);
+      assert(ALLOWED_GAP_STATUSES.has(gap.status), `Gap ${gap.id} has invalid status: ${gap.status}`);
+      assert(gap.severity, `Gap ${gap.id} missing severity`);
+      assert(gap.closure_condition && gap.closure_condition.length > 0, `Gap ${gap.id} missing closure_condition`);
+      if (gap.status === 'CLOSED') {
+        assert(gap.closed_by_commit, `Closed gap ${gap.id} missing closed_by_commit`);
+        assert(gap.evidence && gap.evidence.length > 0, `Closed gap ${gap.id} missing evidence`);
+      }
+    } catch (e) {
+      errors.push(`Failed to parse gaps.jsonl line ${idx + 1}: ${e.message}`);
+    }
+  });
+}
+
+// 3. Check claims.jsonl
+const claimsFile = path.join(FOUNDRY_DIR, 'claims.jsonl');
+assert(fs.existsSync(claimsFile), 'foundry/claims.jsonl does not exist');
+if (fs.existsSync(claimsFile)) {
+  const lines = fs.readFileSync(claimsFile, 'utf8').trim().split('\n').filter(Boolean);
+  lines.forEach((line, idx) => {
+    try {
+      const claim = JSON.parse(line);
+      assert(claim.id, `Claim line ${idx + 1} missing id`);
+      assert(claim.claim, `Claim ${claim.id} missing claim text`);
+      assert(ALLOWED_STATES.has(claim.state), `Claim ${claim.id} has non-canonical state: ${claim.state}`);
+      assert(ALLOWED_STATES.has(claim.required_state), `Claim ${claim.id} has non-canonical required_state: ${claim.required_state}`);
+      if (claim.evidence && claim.evidence.length > 0) {
+        claim.evidence.forEach(evPath => {
+          const abs = path.resolve(ROOT, evPath);
+          assert(fs.existsSync(abs), `Claim ${claim.id} references missing evidence file: ${evPath}`);
+        });
+      }
+    } catch (e) {
+      errors.push(`Failed to parse claims.jsonl line ${idx + 1}: ${e.message}`);
+    }
+  });
+}
+
+// Summary output
+if (errors.length > 0) {
+  console.error('\n❌ FOUNDRY INTEGRITY CHECK FAILED:');
+  errors.forEach(err => console.error(`  - ${err}`));
+  process.exit(1);
+} else {
+  console.log('✅ FOUNDRY INTEGRITY CHECK PASSED: Control plane conforms to BUILD_FOUNDRY.md');
+  process.exit(0);
+}

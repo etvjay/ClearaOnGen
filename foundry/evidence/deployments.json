@@ -1,0 +1,28 @@
+{
+  "sepolia": {
+    "address": "0x277341fc7c2481606ac69922a35b42344be5ec6f",
+    "tx": "0x47a53304df36a76f3920d7a587f8d11d2b4525481b9be49d76e1a84c3112f8c5",
+    "chainId": 11155111
+  },
+  "sepolia_facility": {
+    "address": "0x02ef7720e25d0be793f84e4e82cfab022b88c5bb",
+    "tx": "0x91911fa045b9b1c1231b9b85c1e156eeecdcb4a3baee87e826c612047d2ff2ce"
+  },
+  "sepolia_bridge": {
+    "address": "0x3f248d90bc322aefa30035461af986db3adbb29a",
+    "tx": "0x3a0ec677be27088a406d466b0c85472e70d00bf49a35dbc016774b8668c817fe"
+  },
+  "baseSepolia": {
+    "address": "0xe2b01f99107a6ad24a6bdd8e34f7e864434c69ad",
+    "tx": "0xf7f1fcad2858142c8b9e56b4eba17acc75e5bed541c953ec544a29c8d315fec7",
+    "chainId": 84532
+  },
+  "baseSepolia_facility": {
+    "address": "0x277341fc7c2481606ac69922a35b42344be5ec6f",
+    "tx": "0x7c44e9e426171129abaeac57f4846610744a4f8d04185a33a6449ecbe28bde4c"
+  },
+  "baseSepolia_bridge": {
+    "address": "0x02ef7720e25d0be793f84e4e82cfab022b88c5bb",
+    "tx": "0x775c3f0047a5241959eee52bc51d0eb5bc1bf01dfd9858f03a0da5d9eb1593e6"
+  }
+}

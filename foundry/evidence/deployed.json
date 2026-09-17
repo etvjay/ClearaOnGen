@@ -1,0 +1,1640 @@
+{
+  "network": "studio-next",
+  "chainId": 61997,
+  "address": "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55",
+  "hash": "0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2",
+  "receipt": {
+    "hash": "0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2",
+    "from_address": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642",
+    "to_address": "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55",
+    "data": {
+      "calldata": {
+        "readable": "{}"
+      },
+      "fee_value": "100000000000010352",
+      "salt_nonce": 0,
+      "user_value": 0,
+      "valid_until": 1789638417,
+      "fee_accounting": {
+        "sender": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642",
+        "source": "submission",
+        "status": "settled",
+        "refunds": [
+          {
+            "amount": "99921254500009529",
+            "reason": "finalized",
+            "message": 0,
+            "primary": "99921254500009529",
+            "appealBond": 0
+          }
+        ],
+        "top_ups": [
+          {
+            "amount": "100000000000010352",
+            "sender": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642",
+            "messageFees": 0,
+            "primaryAmount": "100000000000010352",
+            "feesDistribution": {
+              "rotations": [
+                3
+              ],
+              "appealRounds": 0,
+              "totalMessageFees": 0,
+              "executionConsumed": 0,
+              "receiptFeeMaxGasPrice": 300000000,
+              "storageFeeMaxGasPrice": 300000000,
+              "maxPriceGenPerTimeUnit": 2,
+              "executionBudgetPerRound": "25000000000000000",
+              "leaderTimeunitsAllocation": 100,
+              "validatorTimeunitsAllocation": 200
+            }
+          }
+        ],
+        "version": 2,
+        "user_value": 0,
+        "contributions": [
+          {
+            "amount": "100000000000010352",
+            "message": 0,
+            "overlay": 1552,
+            "primary": "100000000000008800",
+            "depositor": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642"
+          }
+        ],
+        "locked_prices": {
+          "genPerTimeUnit": 1,
+          "receiptGasPrice": 250000000,
+          "storageUnitPrice": 250000000
+        },
+        "paid_fee_value": "100000000000010352",
+        "total_refunded": "99921254500009529",
+        "policy_snapshot": {
+          "intrinsic_gas": 21000,
+          "extra_exec_gas": 210000,
+          "gen_per_time_unit": 1,
+          "receipt_gas_price": 250000000,
+          "storage_unit_price": 250000000,
+          "bootloader_overhead": 60000,
+          "max_messages_per_tx": 0,
+          "gas_per_changed_slot": 1000,
+          "max_commit_timeunits": 600,
+          "max_eq_outputs_bytes": 0,
+          "min_commit_timeunits": 30,
+          "calldata_gas_per_byte": 16,
+          "max_propose_timeunits": 600,
+          "min_propose_timeunits": 30,
+          "receipt_wrapper_bytes": 1024,
+          "time_unit_overlay_bps": 1500,
+          "max_allocated_messages": 20,
+          "min_external_gas_limit": 0,
+          "fixed_message_reveal_gas": 100000,
+          "fixed_propose_receipt_gas": 210000,
+          "max_allocation_tree_depth": 5,
+          "default_external_gas_limit": 500000,
+          "max_submitted_messages_bytes": 0,
+          "enforce_v06_submission_config": 1
+        },
+        "fees_distribution": {
+          "rotations": [
+            3
+          ],
+          "appealRounds": 0,
+          "totalMessageFees": 0,
+          "executionConsumed": 0,
+          "receiptFeeMaxGasPrice": 300000000,
+          "storageFeeMaxGasPrice": 300000000,
+          "maxPriceGenPerTimeUnit": 2,
+          "executionBudgetPerRound": "25000000000000000",
+          "leaderTimeunitsAllocation": 100,
+          "validatorTimeunitsAllocation": 200
+        },
+        "primary_fee_spent": 78745500000823,
+        "settlement_reason": "finalized",
+        "settlement_rounds": [
+          {
+            "rule": "normal",
+            "round": 0,
+            "outcome": "Accepted",
+            "rotations": 0,
+            "timeUnitAmount": 700
+          }
+        ],
+        "actual_final_round": 0,
+        "appeal_bonds_total": 0,
+        "message_fee_budget": 0,
+        "primary_fee_budget": "100000000000010352",
+        "required_fee_value": "100000000000010352",
+        "appeal_profit_spent": 0,
+        "funding_overlay_bps": 1500,
+        "appeal_funding_total": 0,
+        "execution_fee_report": {
+          "messageFees": {
+            "budget": 0,
+            "remaining": 0,
+            "meteringDelta": 0,
+            "declaredConsumed": 0,
+            "declaredRefunded": 0,
+            "genvmMeteredConsumed": 0
+          },
+          "genvmBuckets": {
+            "layout": "genvm-v0.3",
+            "buckets": [
+              {
+                "name": "execution",
+                "unit": "fee",
+                "index": 0,
+                "consumed": 127995500000000
+              },
+              {
+                "name": "message",
+                "unit": "fee",
+                "index": 1,
+                "consumed": 0
+              },
+              {
+                "name": "nondeterministicOutputBytes",
+                "unit": "bytes",
+                "index": 2,
+                "consumed": 0
+              },
+              {
+                "name": "submittedMessageBytes",
+                "unit": "bytes",
+                "index": 3,
+                "consumed": 0
+              }
+            ],
+            "message": 0,
+            "execution": 127995500000000,
+            "totalExecution": 127995500000000,
+            "totalWithMessage": 127995500000000,
+            "submittedMessageBytes": 0,
+            "executionBudgetOverrun": 0,
+            "executionBudgetExceeded": false,
+            "executionBudgetPerRound": "25000000000000000",
+            "executionBudgetRemaining": "24872004500000000",
+            "nondeterministicOutputBytes": 0
+          },
+          "proposalReceipt": {
+            "fee": 78628000000000,
+            "estimatedGas": 314512,
+            "receiptBytes": 1032,
+            "eqBlocksOutputsLength": 8
+          },
+          "receiptGasPrice": 250000000,
+          "executionMetering": {
+            "chargeableExecutionFee": 78745500000000,
+            "genvmReportedExecution": 127995500000000,
+            "genvmDeltaFromChargeable": 49250000000000
+          },
+          "totalEstimatedFee": 78628000000000,
+          "chargeableExecution": {
+            "layout": "consensus-chargeable",
+            "buckets": [
+              {
+                "name": "receipt",
+                "unit": "fee",
+                "index": 0,
+                "consumed": 78628000000000
+              },
+              {
+                "name": "storage",
+                "unit": "fee",
+                "index": 1,
+                "consumed": 117500000000
+              }
+            ],
+            "receipt": 78628000000000,
+            "storage": 117500000000,
+            "totalExecution": 78745500000000,
+            "totalWithMessage": 78745500000000,
+            "executionBudgetOverrun": 0,
+            "executionBudgetExceeded": false,
+            "executionBudgetPerRound": "25000000000000000",
+            "executionBudgetRemaining": "24921254500000000"
+          },
+          "historicalReceiptFees": {
+            "attempts": [
+              {
+                "round": 0,
+                "attempt": 0,
+                "receiptFee": 78628000000000,
+                "leaderTimeout": false,
+                "receiptGasPrice": 250000000,
+                "deterministicViolation": false
+              }
+            ],
+            "totalExecution": 78745500000000,
+            "finalStorageFee": 117500000000,
+            "receiptFeeTotal": 78628000000000
+          },
+          "totalStudioMeteredFee": 127878000000000
+        },
+        "message_fee_consumed": 0,
+        "message_fee_refunded": 0,
+        "primary_fee_refunded": "99921254500009529",
+        "primary_fee_required": "100000000000010352",
+        "selection_pool_count": 16,
+        "message_phase_emitted": {
+          "accepted": true,
+          "finalized": true
+        },
+        "execution_budget_total": "100000000000000000",
+        "execution_fee_consumed": 78745500000000,
+        "fee_refund_settlements": [
+          {
+            "amount": "99921254500008100",
+            "source": "primary-fifo",
+            "recipient": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642"
+          },
+          {
+            "amount": 1429,
+            "source": "overlay-fifo",
+            "recipient": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642"
+          }
+        ],
+        "recommended_fee_preset": {
+          "source": "simulation",
+          "feeValue": 614378400010352,
+          "observed": {
+            "executionFee": 78745500000000,
+            "messageFeeBudget": 0,
+            "totalEstimatedFee": 78628000000000,
+            "declaredMessageFees": 0,
+            "totalStudioMeteredFee": 127878000000000,
+            "genvmExecutionRequired": 127995500000000,
+            "externalMessageReserved": 0
+          },
+          "paddingBps": 12000,
+          "distribution": {
+            "rotations": [
+              3
+            ],
+            "appealRounds": 0,
+            "totalMessageFees": 0,
+            "executionConsumed": 0,
+            "receiptFeeMaxGasPrice": 300000000,
+            "storageFeeMaxGasPrice": 300000000,
+            "maxPriceGenPerTimeUnit": 2,
+            "executionBudgetPerRound": 153594600000000,
+            "leaderTimeunitsAllocation": 100,
+            "validatorTimeunitsAllocation": 200
+          },
+          "messageBudgetMode": "current",
+          "numOfInitialValidators": 5
+        },
+        "appeal_profit_requested": 0,
+        "genvm_fee_bucket_report": {
+          "layout": "genvm-v0.3",
+          "buckets": [
+            {
+              "name": "execution",
+              "unit": "fee",
+              "index": 0,
+              "consumed": 127995500000000
+            },
+            {
+              "name": "message",
+              "unit": "fee",
+              "index": 1,
+              "consumed": 0
+            },
+            {
+              "name": "nondeterministicOutputBytes",
+              "unit": "bytes",
+              "index": 2,
+              "consumed": 0
+            },
+            {
+              "name": "submittedMessageBytes",
+              "unit": "bytes",
+              "index": 3,
+              "consumed": 0
+            }
+          ],
+          "message": 0,
+          "execution": 127995500000000,
+          "totalExecution": 127995500000000,
+          "totalWithMessage": 127995500000000,
+          "submittedMessageBytes": 0,
+          "executionBudgetOverrun": 0,
+          "executionBudgetExceeded": false,
+          "executionBudgetPerRound": "25000000000000000",
+          "executionBudgetRemaining": "24872004500000000",
+          "nondeterministicOutputBytes": 0
+        },
+        "time_unit_overlay_spent": 123,
+        "untracked_contributions": 0,
+        "activation_prices_locked": true,
+        "selection_pool_addresses": [
+          "0x1da3a7de8ea65a318bf88eb63d3dc55295dd257e",
+          "0x6760cdec573cf38568c59872ee48b6fed41f8a4c",
+          "0xa0435f618c1f27b254998018aea8da5c77187852",
+          "0xcbc79f96b7a275b23ee64d80a98325107f6e1b77",
+          "0xf13c3dfe38c8e206c33f750c24a1b043b63cb810",
+          "0x8d32eb5d0207f7e230c45e7bf0d14b2ed5da3028",
+          "0xcef1baa172d0b4d99dcc505b36332f26d1088025",
+          "0x5cdf4bddeeda0e32ed596b94f69acc0fbb57f264",
+          "0x05d8afc66b515038712537f99caaea73d16f0007",
+          "0xeecec5d1e07ee40f5cb85af922178dc01278013c",
+          "0xa793d9dc0ed9edc1f9f732bb68b5d3afa934f52d",
+          "0x5a4230b920b18c4afd3a28f99eae669b7f2cdc1e",
+          "0x8142e5d1b04f84c3cd995c25aae31b31f8e0379e",
+          "0xcf5fd792df0dc9d297af75c82b4a0011e8fa1a4a",
+          "0xe52ddb85587585930b1e5f1fe88fef21cca49829",
+          "0xe4e106086f167d75e2270fa5f3680f6ac598d179"
+        ],
+        "time_unit_overlay_budget": 1552,
+        "active_message_generation": {
+          "acceptanceDispatched": true,
+          "acceptanceDispatchRequired": true
+        },
+        "appeal_bonds_payout_total": 0,
+        "storage_fee_dust_refunded": 0,
+        "genvm_fee_consumed_buckets": [
+          127995500000000,
+          0,
+          0,
+          0
+        ],
+        "genvm_message_fee_consumed": 0,
+        "message_consumption_events": [
+          {
+            "consumed": 0,
+            "remaining": 0,
+            "internalConsumed": 0,
+            "externalReimbursed": 0
+          }
+        ],
+        "appeal_bond_sender_refunded": 0,
+        "storage_fee_recipient_count": 5,
+        "time_unit_overlay_requested": 123,
+        "external_message_fee_settled": 0,
+        "external_message_fee_reserved": 0,
+        "historical_execution_attempts": [
+          {
+            "round": 0,
+            "attempt": 0,
+            "receiptFee": 78628000000000,
+            "leaderTimeout": false,
+            "receiptGasPrice": 250000000,
+            "deterministicViolation": false
+          }
+        ],
+        "appeal_charge_surplus_refunded": 0,
+        "execution_fee_consumed_buckets": [
+          78628000000000,
+          117500000000
+        ],
+        "external_message_fee_remainder": 0,
+        "message_allocations_restricted": false,
+        "external_message_fee_reimbursed": 0,
+        "message_fees_recorded_at_reveal": true,
+        "time_unit_overlay_settlement_bps": 1500
+      },
+      "contract_address": "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55",
+      "fees_distribution": {
+        "rotations": [
+          3
+        ],
+        "appealRounds": 0,
+        "totalMessageFees": 0,
+        "executionConsumed": 0,
+        "receiptFeeMaxGasPrice": 300000000,
+        "storageFeeMaxGasPrice": 300000000,
+        "maxPriceGenPerTimeUnit": 2,
+        "executionBudgetPerRound": "25000000000000000",
+        "leaderTimeunitsAllocation": 100,
+        "validatorTimeunitsAllocation": 200
+      },
+      "message_allocations_count": 0
+    },
+    "status": 7,
+    "txExecutionResult": 1,
+    "txExecutionResultName": "FINISHED_WITH_RETURN",
+    "fees": {
+      "deposit": "100000000000010352",
+      "userValue": "0",
+      "distribution": {
+        "leaderTimeunitsAllocation": "100",
+        "validatorTimeunitsAllocation": "200",
+        "appealRounds": "0",
+        "executionBudgetPerRound": "25000000000000000",
+        "totalMessageFees": "0",
+        "rotations": [
+          "3"
+        ],
+        "maxPriceGenPerTimeUnit": "2",
+        "storageFeeMaxGasPrice": "300000000",
+        "receiptFeeMaxGasPrice": "300000000"
+      },
+      "locked": {
+        "genPerTimeUnit": "1",
+        "storageUnitPrice": "250000000",
+        "receiptGasPrice": "250000000"
+      },
+      "consumed": {
+        "executionConsumed": "78745500000000",
+        "storageFeeUsed": "117500000000",
+        "messageFeesConsumed": "0",
+        "messageFeesBudgetTotal": "0",
+        "leaderTimeunitsUsed": "1",
+        "validatorTimeunitsUsed": "3",
+        "perRound": [
+          {
+            "round": 0,
+            "consensusRound": "Accepted",
+            "leaderTimeunits": "1",
+            "validatorTimeunits": "3",
+            "maxValidatorTimeunits": "1"
+          }
+        ]
+      }
+    },
+    "result": 1,
+    "consensus_data": {
+      "votes": {
+        "0x05d8aFc66B515038712537f99cAAEA73d16f0007": "agree",
+        "0x6760cDeC573cf38568C59872ee48B6fED41F8A4c": "agree",
+        "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E": "idle",
+        "0xEEcEC5D1E07Ee40f5cb85aF922178Dc01278013C": "agree",
+        "0xcbC79F96B7A275b23EE64d80a98325107F6E1b77": "idle"
+      },
+      "leader_receipt": [
+        {
+          "execution_result": "SUCCESS",
+          "genvm_result": {
+            "stderr": "",
+            "stdout": "",
+            "raw_error": null,
+            "error_code": null,
+            "error_description": null,
+            "data_fees_consumed": [
+              127995500000000,
+              0,
+              0,
+              0
+            ],
+            "data_fees_remaining": [
+              "24872004500000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ],
+            "fee_policy_snapshot": {
+              "intrinsic_gas": 21000,
+              "extra_exec_gas": 210000,
+              "gen_per_time_unit": 1,
+              "receipt_gas_price": 250000000,
+              "storage_unit_price": 250000000,
+              "bootloader_overhead": 60000,
+              "max_messages_per_tx": 0,
+              "gas_per_changed_slot": 1000,
+              "max_commit_timeunits": 600,
+              "max_eq_outputs_bytes": 0,
+              "min_commit_timeunits": 30,
+              "calldata_gas_per_byte": 16,
+              "max_propose_timeunits": 600,
+              "min_propose_timeunits": 30,
+              "receipt_wrapper_bytes": 1024,
+              "time_unit_overlay_bps": 1500,
+              "max_allocated_messages": 20,
+              "min_external_gas_limit": 0,
+              "fixed_message_reveal_gas": 100000,
+              "fixed_propose_receipt_gas": 210000,
+              "max_allocation_tree_depth": 5,
+              "default_external_gas_limit": 500000,
+              "max_submitted_messages_bytes": 0,
+              "enforce_v06_submission_config": 1
+            },
+            "data_fee_bucket_totals": [
+              "25000000000000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ]
+          },
+          "mode": "leader",
+          "vote": null,
+          "node_config": {
+            "stake": 100,
+            "address": "0x05d8aFc66B515038712537f99cAAEA73d16f0007",
+            "primary_model": {
+              "model": "policy:dev-deepseek",
+              "config": {
+                "policy_ir": [
+                  "policy",
+                  [
+                    "and",
+                    [
+                      "meets_req"
+                    ],
+                    [
+                      "not",
+                      [
+                        "is",
+                        "disabled"
+                      ]
+                    ],
+                    [
+                      "cmp",
+                      "success_rate",
+                      "ge",
+                      0.2
+                    ],
+                    [
+                      "or",
+                      [
+                        "family_eq",
+                        "deepseek-v3.2"
+                      ],
+                      [
+                        "family_eq",
+                        "gpt-oss-120b"
+                      ],
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ]
+                    ]
+                  ],
+                  [
+                    "add",
+                    [
+                      "scale",
+                      100,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "deepseek-v3.2"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      10,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-oss-120b"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      1,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-5.4"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.25,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_in"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.45,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_out"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.2,
+                      [
+                        "field",
+                        "success_rate"
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.1,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "latency_ms"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "argmax"
+                  ],
+                  [
+                    "id"
+                  ],
+                  [
+                    "always",
+                    {
+                      "action": "next_candidate"
+                    }
+                  ]
+                ],
+                "timeout_ms": 22000,
+                "first_token_timeout_ms": 7000
+              },
+              "plugin": "openai-compatible",
+              "provider": "llm-router",
+              "plugin_config": {
+                "api_url": "https://router.ygr.ai",
+                "api_key_env_var": "LLM_ROUTER_API_KEY"
+              },
+              "fallback_validator": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E"
+            },
+            "secondary_model": {
+              "model": "openai/gpt-5.4",
+              "config": {
+                "models": [
+                  "openai/gpt-5.4",
+                  "anthropic/claude-sonnet-4.6",
+                  "google/gemini-3-flash-preview"
+                ]
+              },
+              "plugin": "openai-compatible",
+              "address": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E",
+              "provider": "openrouter",
+              "plugin_config": {
+                "api_url": "https://openrouter.ai/api",
+                "api_key_env_var": "OPENROUTERAPIKEY"
+              }
+            }
+          },
+          "calldata": {
+            "readable": "{}"
+          },
+          "eq_outputs": {},
+          "result": {
+            "status": "return",
+            "payload": {
+              "readable": "null"
+            }
+          }
+        },
+        {
+          "execution_result": "SUCCESS",
+          "genvm_result": {
+            "stderr": "",
+            "stdout": "",
+            "raw_error": null,
+            "error_code": null,
+            "error_description": null,
+            "data_fees_consumed": [
+              127995500000000,
+              0,
+              0,
+              0
+            ],
+            "data_fees_remaining": [
+              "24872004500000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ],
+            "data_fee_bucket_totals": [
+              "25000000000000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ]
+          },
+          "mode": "validator",
+          "vote": "agree",
+          "node_config": {
+            "stake": 100,
+            "address": "0x05d8aFc66B515038712537f99cAAEA73d16f0007",
+            "primary_model": {
+              "model": "policy:dev-deepseek",
+              "config": {
+                "policy_ir": [
+                  "policy",
+                  [
+                    "and",
+                    [
+                      "meets_req"
+                    ],
+                    [
+                      "not",
+                      [
+                        "is",
+                        "disabled"
+                      ]
+                    ],
+                    [
+                      "cmp",
+                      "success_rate",
+                      "ge",
+                      0.2
+                    ],
+                    [
+                      "or",
+                      [
+                        "family_eq",
+                        "deepseek-v3.2"
+                      ],
+                      [
+                        "family_eq",
+                        "gpt-oss-120b"
+                      ],
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ]
+                    ]
+                  ],
+                  [
+                    "add",
+                    [
+                      "scale",
+                      100,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "deepseek-v3.2"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      10,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-oss-120b"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      1,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-5.4"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.25,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_in"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.45,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_out"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.2,
+                      [
+                        "field",
+                        "success_rate"
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.1,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "latency_ms"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "argmax"
+                  ],
+                  [
+                    "id"
+                  ],
+                  [
+                    "always",
+                    {
+                      "action": "next_candidate"
+                    }
+                  ]
+                ],
+                "timeout_ms": 22000,
+                "first_token_timeout_ms": 7000
+              },
+              "plugin": "openai-compatible",
+              "provider": "llm-router",
+              "plugin_config": {
+                "api_url": "https://router.ygr.ai",
+                "api_key_env_var": "LLM_ROUTER_API_KEY"
+              },
+              "fallback_validator": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E"
+            },
+            "secondary_model": {
+              "model": "openai/gpt-5.4",
+              "config": {
+                "models": [
+                  "openai/gpt-5.4",
+                  "anthropic/claude-sonnet-4.6",
+                  "google/gemini-3-flash-preview"
+                ]
+              },
+              "plugin": "openai-compatible",
+              "address": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E",
+              "provider": "openrouter",
+              "plugin_config": {
+                "api_url": "https://openrouter.ai/api",
+                "api_key_env_var": "OPENROUTERAPIKEY"
+              }
+            }
+          },
+          "calldata": {
+            "readable": "{}"
+          },
+          "result": {
+            "status": "return",
+            "payload": {
+              "readable": "null"
+            }
+          }
+        }
+      ],
+      "validators": [
+        {
+          "execution_result": "ERROR",
+          "genvm_result": {
+            "stderr": "Validator execution cancelled after quorum",
+            "stdout": "",
+            "raw_error": {
+              "fatal": false,
+              "causes": [
+                "VALIDATOR_QUORUM_REACHED"
+              ]
+            },
+            "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+          },
+          "mode": "validator",
+          "vote": "idle",
+          "node_config": {
+            "id": 187,
+            "model": "policy:dev-gemini",
+            "stake": 100,
+            "config": {
+              "policy_ir": [
+                "policy",
+                [
+                  "and",
+                  [
+                    "meets_req"
+                  ],
+                  [
+                    "not",
+                    [
+                      "is",
+                      "disabled"
+                    ]
+                  ],
+                  [
+                    "cmp",
+                    "success_rate",
+                    "ge",
+                    0.2
+                  ],
+                  [
+                    "or",
+                    [
+                      "family_eq",
+                      "gemini-3-flash-preview"
+                    ],
+                    [
+                      "family_eq",
+                      "gpt-oss-120b"
+                    ],
+                    [
+                      "family_eq",
+                      "gpt-5.4"
+                    ]
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "scale",
+                    100,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gemini-3-flash-preview"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    10,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gpt-oss-120b"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    1,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.25,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_in"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.45,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_out"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.2,
+                    [
+                      "field",
+                      "success_rate"
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.1,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "latency_ms"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "argmax"
+                ],
+                [
+                  "id"
+                ],
+                [
+                  "always",
+                  {
+                    "action": "next_candidate"
+                  }
+                ]
+              ],
+              "timeout_ms": 22000,
+              "first_token_timeout_ms": 7000
+            },
+            "plugin": "openai-compatible",
+            "address": "0xcbC79F96B7A275b23EE64d80a98325107F6E1b77",
+            "provider": "llm-router",
+            "plugin_config": {
+              "api_url": "https://router.ygr.ai",
+              "api_key_env_var": "LLM_ROUTER_API_KEY"
+            },
+            "fallback_validator": "0xE52dDB85587585930b1E5f1Fe88fef21CcA49829"
+          }
+        },
+        {
+          "execution_result": "SUCCESS",
+          "genvm_result": {
+            "stderr": "",
+            "stdout": "",
+            "raw_error": null,
+            "error_code": null,
+            "error_description": null,
+            "data_fees_consumed": [
+              127995500000000,
+              0,
+              0,
+              0
+            ],
+            "data_fees_remaining": [
+              "24872004500000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ],
+            "data_fee_bucket_totals": [
+              "25000000000000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ]
+          },
+          "mode": "validator",
+          "vote": "agree",
+          "node_config": {
+            "stake": 100,
+            "address": "0xEEcEC5D1E07Ee40f5cb85aF922178Dc01278013C",
+            "primary_model": {
+              "model": "policy:dev-gpt-oss",
+              "config": {
+                "policy_ir": [
+                  "policy",
+                  [
+                    "and",
+                    [
+                      "meets_req"
+                    ],
+                    [
+                      "not",
+                      [
+                        "is",
+                        "disabled"
+                      ]
+                    ],
+                    [
+                      "cmp",
+                      "success_rate",
+                      "ge",
+                      0.2
+                    ],
+                    [
+                      "or",
+                      [
+                        "family_eq",
+                        "gpt-oss-120b"
+                      ],
+                      [
+                        "family_eq",
+                        "deepseek-v3.2"
+                      ],
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ]
+                    ]
+                  ],
+                  [
+                    "add",
+                    [
+                      "scale",
+                      100,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-oss-120b"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      10,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "deepseek-v3.2"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      1,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-5.4"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.25,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_in"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.45,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_out"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.2,
+                      [
+                        "field",
+                        "success_rate"
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.1,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "latency_ms"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "argmax"
+                  ],
+                  [
+                    "id"
+                  ],
+                  [
+                    "always",
+                    {
+                      "action": "next_candidate"
+                    }
+                  ]
+                ],
+                "timeout_ms": 22000,
+                "first_token_timeout_ms": 7000
+              },
+              "plugin": "openai-compatible",
+              "provider": "llm-router",
+              "plugin_config": {
+                "api_url": "https://router.ygr.ai",
+                "api_key_env_var": "LLM_ROUTER_API_KEY"
+              },
+              "fallback_validator": "0xcF5Fd792Df0Dc9d297af75c82B4A0011e8FA1A4A"
+            },
+            "secondary_model": {
+              "model": "openai/gpt-5.4",
+              "config": {
+                "models": [
+                  "openai/gpt-5.4",
+                  "anthropic/claude-sonnet-4.6",
+                  "google/gemini-3-flash-preview"
+                ]
+              },
+              "plugin": "openai-compatible",
+              "address": "0xcF5Fd792Df0Dc9d297af75c82B4A0011e8FA1A4A",
+              "provider": "openrouter",
+              "plugin_config": {
+                "api_url": "https://openrouter.ai/api",
+                "api_key_env_var": "OPENROUTERAPIKEY"
+              }
+            }
+          }
+        },
+        {
+          "execution_result": "SUCCESS",
+          "genvm_result": {
+            "stderr": "",
+            "stdout": "",
+            "raw_error": null,
+            "error_code": null,
+            "error_description": null,
+            "data_fees_consumed": [
+              127995500000000,
+              0,
+              0,
+              0
+            ],
+            "data_fees_remaining": [
+              "24872004500000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ],
+            "data_fee_bucket_totals": [
+              "25000000000000000",
+              0,
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+              "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+            ]
+          },
+          "mode": "validator",
+          "vote": "agree",
+          "node_config": {
+            "stake": 100,
+            "address": "0x6760cDeC573cf38568C59872ee48B6fED41F8A4c",
+            "primary_model": {
+              "model": "policy:dev-gpt-5-4",
+              "config": {
+                "policy_ir": [
+                  "policy",
+                  [
+                    "and",
+                    [
+                      "meets_req"
+                    ],
+                    [
+                      "not",
+                      [
+                        "is",
+                        "disabled"
+                      ]
+                    ],
+                    [
+                      "cmp",
+                      "success_rate",
+                      "ge",
+                      0.2
+                    ],
+                    [
+                      "or",
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ],
+                      [
+                        "family_eq",
+                        "gemini-3-flash-preview"
+                      ],
+                      [
+                        "family_eq",
+                        "gpt-oss-120b"
+                      ]
+                    ]
+                  ],
+                  [
+                    "add",
+                    [
+                      "scale",
+                      100,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-5.4"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      10,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gemini-3-flash-preview"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      1,
+                      [
+                        "gate",
+                        [
+                          "family_eq",
+                          "gpt-oss-120b"
+                        ],
+                        [
+                          "lit",
+                          1
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.25,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_in"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.45,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "price_out"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.2,
+                      [
+                        "field",
+                        "success_rate"
+                      ]
+                    ],
+                    [
+                      "scale",
+                      0.1,
+                      [
+                        "neg",
+                        [
+                          "normalize",
+                          [
+                            "field",
+                            "latency_ms"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "argmax"
+                  ],
+                  [
+                    "id"
+                  ],
+                  [
+                    "always",
+                    {
+                      "action": "next_candidate"
+                    }
+                  ]
+                ],
+                "timeout_ms": 22000,
+                "first_token_timeout_ms": 7000
+              },
+              "plugin": "openai-compatible",
+              "provider": "llm-router",
+              "plugin_config": {
+                "api_url": "https://router.ygr.ai",
+                "api_key_env_var": "LLM_ROUTER_API_KEY"
+              },
+              "fallback_validator": "0xcF5Fd792Df0Dc9d297af75c82B4A0011e8FA1A4A"
+            },
+            "secondary_model": {
+              "model": "openai/gpt-5.4",
+              "config": {
+                "models": [
+                  "openai/gpt-5.4",
+                  "anthropic/claude-sonnet-4.6",
+                  "google/gemini-3-flash-preview"
+                ]
+              },
+              "plugin": "openai-compatible",
+              "address": "0xcF5Fd792Df0Dc9d297af75c82B4A0011e8FA1A4A",
+              "provider": "openrouter",
+              "plugin_config": {
+                "api_url": "https://openrouter.ai/api",
+                "api_key_env_var": "OPENROUTERAPIKEY"
+              }
+            }
+          }
+        },
+        {
+          "execution_result": "ERROR",
+          "genvm_result": {
+            "stderr": "Validator execution cancelled after quorum",
+            "stdout": "",
+            "raw_error": {
+              "fatal": false,
+              "causes": [
+                "VALIDATOR_QUORUM_REACHED"
+              ]
+            },
+            "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+          },
+          "mode": "validator",
+          "vote": "idle",
+          "node_config": {
+            "id": 196,
+            "model": "openai/gpt-5.4",
+            "stake": 100,
+            "config": {
+              "models": [
+                "openai/gpt-5.4",
+                "anthropic/claude-sonnet-4.6",
+                "google/gemini-3-flash-preview"
+              ]
+            },
+            "plugin": "openai-compatible",
+            "address": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E",
+            "provider": "openrouter",
+            "plugin_config": {
+              "api_url": "https://openrouter.ai/api",
+              "api_key_env_var": "OPENROUTERAPIKEY"
+            },
+            "fallback_validator": "0xcbC79F96B7A275b23EE64d80a98325107F6E1b77"
+          }
+        }
+      ]
+    },
+    "gaslimit": 15,
+    "nonce": 15,
+    "created_at": "2026-09-17T08:46:58.225017+00:00",
+    "leader_only": false,
+    "execution_mode": "NORMAL",
+    "origin_address": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642",
+    "triggered_on": null,
+    "appeal_validators_timeout": false,
+    "sim_config": {
+      "signed_rollup_transaction": "0xf93d510f80830f424094b7278a61aa25c888815afc32ad3cc52ff24fe57588016345785d8a2870b93ce435a251fb000000000000000000000000000000000000000000000000000000000000002000000000000000000000000085b5948ecc0b20a89267f7c6f35f656c38268642000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000006aabb71100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000002c00000000000000000000000000000000000000000000000000000000000003ca0000000000000000000000000000000000000000000000000000000000000006400000000000000000000000000000000000000000000000000000000000000c800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000058d15e1762800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000011e1a3000000000000000000000000000000000000000000000000000000000011e1a3000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000039b7f939b4b939af232076302e322e31360a23207b2022446570656e6473223a202270792d67656e6c617965723a356a796367653471386b32333436326a746230623966796579317339717a393238737a326e627264396d67347378716732716e6722207d0a0a696d706f7274206a736f6e0a696d706f72742067656e6c6179657220617320676c0a0a0a636c61737320436c65617261436f6f7264696e61746f7228676c2e636f6e74726163742e436f6e7472616374293a0a202020206f626c69676174696f6e733a20676c2e73746f726167652e547265654d61705b7374722c207374725d0a20202020636f756e743a20676c2e753235360a0a20202020646566205f5f696e69745f5f2873656c66293a0a202020202020202073656c662e636f756e74203d20676c2e753235362830290a0a2020202040676c2e7075626c69632e77726974650a20202020646566207265636f72645f6f626c69676174696f6e280a202020202020202073656c662c0a202020202020202070617274795f623a207374722c0a2020202020202020616d6f756e745f6174746f3a207374722c0a202020202020202063757272656e63793a207374722c0a202020202020202065766964656e63655f75726c3a207374722c0a2020202020202020636861696e5f613a207374722c0a2020202020202020636861696e5f623a207374722c0a20202020202020207465726d733a207374722c0a2020202029202d3e207374723a0a20202020202020206f6964203d2066226f626c2d7b696e742873656c662e636f756e7429202b20317d220a202020202020202073656c662e6f626c69676174696f6e735b6f69645d203d206a736f6e2e64756d7073287b0a202020202020202020202020226964223a206f69642c0a2020202020202020202020202270617274795f61223a2073747228676c2e6d6573736167652e73656e6465725f61646472657373292c0a2020202020202020202020202270617274795f62223a2070617274795f622c0a20202020202020202020202022616d6f756e745f6174746f223a20616d6f756e745f6174746f2c0a2020202020202020202020202263757272656e6379223a2063757272656e63792c0a2020202020202020202020202265766964656e63655f75726c223a2065766964656e63655f75726c2c0a20202020202020202020202022636861696e5f61223a20636861696e5f612c0a20202020202020202020202022636861696e5f62223a20636861696e5f622c0a202020202020202020202020227465726d73223a207465726d732c0a20202020202020202020202022737461747573223a202250454e44494e47222c0a202020202020202020202020227365706f6c69615f70726f6f665f7478223a2022222c0a20202020202020202020202022626173655f70726f6f665f7478223a2022222c0a202020202020202020202020226e65745f6174746f5f616d6f756e74223a202230222c0a202020202020202020202020226e65745f646972656374696f6e223a2022222c0a20202020202020202020202022636c65617265645f61745f626c6f636b223a2022222c0a2020202020202020202020202261646a756469636174696f6e5f6d6f6465223a2022222c0a2020202020202020202020202261646a756469636174696f6e5f726561736f6e5f636f646573223a2022222c0a2020202020202020202020202261646a756469636174696f6e5f73756d6d617279223a2022222c0a20202020202020207d2c20736f72745f6b6579733d54727565290a202020202020202073656c662e636f756e74203d20676c2e7532353628696e742873656c662e636f756e7429202b2031290a202020202020202072657475726e206f69640a0a20202020646566205f66657463685f726563656970742873656c662c207270635f75726c3a207374722c2074785f686173683a2073747229202d3e20646963743a0a20202020202020206465662066657463682829202d3e207374723a0a202020202020202020202020726563656970745f7061796c6f6164203d206a736f6e2e64756d7073280a202020202020202020202020202020207b226a736f6e727063223a2022322e30222c20226964223a20312c20226d6574686f64223a20226574685f6765745472616e73616374696f6e52656365697074222c2022706172616d73223a205b74785f686173685d7d0a202020202020202020202020290a202020202020202020202020726563656970745f726573203d20676c2e6e6f6e6465742e7765622e706f7374280a202020202020202020202020202020207270635f75726c2c0a20202020202020202020202020202020626f64793d726563656970745f7061796c6f61642e656e636f646528292c0a20202020202020202020202020202020686561646572733d7b22436f6e74656e742d54797065223a20226170706c69636174696f6e2f6a736f6e227d2c0a202020202020202020202020290a202020202020202020202020696620726563656970745f7265732e737461747573203e3d203530303a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b5452414e5349454e545d2052504320756e617661696c61626c6522290a202020202020202020202020696620726563656970745f7265732e737461747573203e3d203430303a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585445524e414c5d20525043206572726f7222290a202020202020202020202020726563656970745f64617461203d206a736f6e2e6c6f61647328726563656970745f7265732e626f64792e6465636f64652829290a202020202020202020202020696620226572726f722220696e20726563656970745f646174613a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585445524e414c5d205250432072657475726e6564206572726f7222290a20202020202020202020202072656365697074203d20726563656970745f646174612e6765742822726573756c7422290a2020202020202020202020206966206e6f7420726563656970743a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d205472616e73616374696f6e206e6f7420666f756e6422290a202020202020202020202020696620726563656970742e6765742822737461747573222920213d2022307831223a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d205472616e73616374696f6e206661696c6564206f6e20736f7572636520636861696e22290a0a20202020202020202020202074785f7061796c6f6164203d206a736f6e2e64756d7073280a202020202020202020202020202020207b226a736f6e727063223a2022322e30222c20226964223a20312c20226d6574686f64223a20226574685f6765745472616e73616374696f6e427948617368222c2022706172616d73223a205b74785f686173685d7d0a202020202020202020202020290a20202020202020202020202074785f726573203d20676c2e6e6f6e6465742e7765622e706f7374280a202020202020202020202020202020207270635f75726c2c0a20202020202020202020202020202020626f64793d74785f7061796c6f61642e656e636f646528292c0a20202020202020202020202020202020686561646572733d7b22436f6e74656e742d54797065223a20226170706c69636174696f6e2f6a736f6e227d2c0a202020202020202020202020290a20202020202020202020202069662074785f7265732e737461747573203e3d203530303a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b5452414e5349454e545d2052504320756e617661696c61626c6522290a20202020202020202020202069662074785f7265732e737461747573203e3d203430303a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585445524e414c5d20525043206572726f7222290a20202020202020202020202074785f64617461203d206a736f6e2e6c6f6164732874785f7265732e626f64792e6465636f64652829290a202020202020202020202020696620226572726f722220696e2074785f64617461206f72206e6f742074785f646174612e6765742822726573756c7422293a0a20202020202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d205472616e73616374696f6e206e6f7420666f756e6422290a2020202020202020202020207478203d2074785f646174615b22726573756c74225d0a0a20202020202020202020202072657475726e206a736f6e2e64756d7073280a202020202020202020202020202020207b0a20202020202020202020202020202020202020202274785f68617368223a2074785f686173682e6c6f77657228292c0a20202020202020202020202020202020202020202266726f6d223a2073747228726563656970742e676574282266726f6d222c20222229292e6c6f77657228292c0a202020202020202020202020202020202020202022746f223a2073747228726563656970742e6765742822746f222c20222229292e6c6f77657228292c0a202020202020202020202020202020202020202022626c6f636b5f6e756d626572223a2073747228726563656970742e6765742822626c6f636b4e756d626572222c20222229292c0a20202020202020202020202020202020202020202276616c75655f6174746f223a2073747228696e742874782e676574282276616c7565222c202230783022292c20313629292c0a202020202020202020202020202020207d2c0a20202020202020202020202020202020736f72745f6b6579733d547275652c0a202020202020202020202020290a0a202020202020202072657475726e206a736f6e2e6c6f61647328676c2e65715f7072696e6369706c652e7374726963745f657128666574636829290a0a2020202040676c2e7075626c69632e77726974650a20202020646566207665726966795f736f757263655f6576656e74280a202020202020202073656c662c0a20202020202020206f626c69676174696f6e5f69643a207374722c0a2020202020202020636861696e3a207374722c0a20202020202020207270635f75726c3a207374722c0a202020202020202074785f686173683a207374722c0a202020202020202065787065637465645f66726f6d3a207374722c0a202020202020202065787065637465645f746f3a207374722c0a202020202020202065787065637465645f76616c75655f6174746f3a207374722c0a2020202029202d3e204e6f6e653a0a20202020202020206f626c203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d290a202020202020202070726f76656e203d2073656c662e5f66657463685f72656365697074287270635f75726c2c2074785f68617368290a202020202020202069662070726f76656e5b2266726f6d225d20213d2065787065637465645f66726f6d2e6c6f77657228293a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d2066726f6d206d69736d6174636822290a202020202020202069662065787065637465645f746f20616e642070726f76656e5b22746f225d20213d2065787065637465645f746f2e6c6f77657228293a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d20746f206d69736d6174636822290a202020202020202069662070726f76656e5b2276616c75655f6174746f225d20213d2073747228696e742865787065637465645f76616c75655f6174746f29293a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d2076616c7565206d69736d6174636822290a2020202020202020696620636861696e203d3d20225345504f4c4941223a0a2020202020202020202020206f626c5b227365706f6c69615f70726f6f665f7478225d203d2074785f686173682e6c6f77657228290a2020202020202020656c696620636861696e203d3d2022424153455f5345504f4c4941223a0a2020202020202020202020206f626c5b22626173655f70726f6f665f7478225d203d2074785f686173682e6c6f77657228290a2020202020202020656c73653a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d20756e6b6e6f776e20636861696e22290a20202020202020206966206f626c5b227365706f6c69615f70726f6f665f7478225d20616e64206f626c5b22626173655f70726f6f665f7478225d3a0a2020202020202020202020206f626c5b22737461747573225d203d20225645524946494544220a202020202020202073656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d203d206a736f6e2e64756d7073286f626c2c20736f72745f6b6579733d54727565290a0a20202020646566205f61646a756469636174655f706169722873656c662c20613a20646963742c20623a206469637429202d3e20646963743a0a202020202020202070726f6d7074203d20662222220a596f7520617265207468652066696e616e6369616c2d72656c6174696f6e736869702061646a7564696361746f7220666f7220436c656172612e0a436c6561726120646f6573206e6f742064656369646520776865746865722061207061796d656e74206d6572656c79206f636375727265642e204974206465636964657320776865746865720a2074776f206f626c69676174696f6e73206172652073656d616e746963616c6c7920636f6d70617469626c6520666f722061207065726d697474656420736574746c656d656e74206d6f64652e0a0a4f626c69676174696f6e2041202841206f7765732042293a0a202070617274795f613a207b615b2270617274795f61225d7d0a202070617274795f623a207b615b2270617274795f62225d7d0a2020616d6f756e745f6174746f3a207b615b22616d6f756e745f6174746f225d7d0a202063757272656e63793a207b615b2263757272656e6379225d7d0a2020736f757263655f636861696e3a207b615b22636861696e5f61225d7d0a202064657374696e6174696f6e5f636861696e3a207b615b22636861696e5f62225d7d0a20207465726d733a207b615b227465726d73225d7d0a202065766964656e63655f75726c3a207b615b2265766964656e63655f75726c225d7d0a0a4f626c69676174696f6e2042202842206f7765732041293a0a202070617274795f613a207b625b2270617274795f61225d7d0a202070617274795f623a207b625b2270617274795f62225d7d0a2020616d6f756e745f6174746f3a207b625b22616d6f756e745f6174746f225d7d0a202063757272656e63793a207b625b2263757272656e6379225d7d0a2020736f757263655f636861696e3a207b625b22636861696e5f61225d7d0a202064657374696e6174696f6e5f636861696e3a207b625b22636861696e5f62225d7d0a20207465726d733a207b625b227465726d73225d7d0a202065766964656e63655f75726c3a207b625b2265766964656e63655f75726c225d7d0a0a45766964656e636520413a0a7b7b65766964656e63655f617d7d0a45766964656e636520423a0a7b7b65766964656e63655f627d7d0a0a4170706c792074686573652063726974657269613a0a312e20546865206f626c69676174696f6e73206d7573742064657363726962652061207265636970726f63616c2072656c6174696f6e736869702c20616c6c6f77696e67206f7264696e6172790a202020636f6d6d65726369616c20776f7264696e6720646966666572656e63657320627574206e6f7420636f6e747261646963746f727920706172746965732e0a322e2043757272656e637920616e6420736574746c656d656e74206173736574206d75737420626520636f6d70617469626c652e0a332e20436861696e20726f75746573206d7573742062652076616c696420666f72206e61746976652d7261696c20657865637574696f6e2e0a342e205465726d73206d75737420646573637269626520656e666f72636561626c652c20636f6d70617469626c65206f626c69676174696f6e732c20696e636c7564696e672064656c69766572792c0a20202074696d696e672c20616e6420636f6e646974696f6e732e20446f206e6f7420696e666572206d697373696e67206d6174657269616c207465726d732e0a352e2045766964656e6365206d75737420737570706f7274207468652072656c6174696f6e736869703b2073656c662d6174746573746174696f6e20616c6f6e6520697320696e73756666696369656e742e0a362e2053656c6563742065786163746c79206f6e65206d6f64653a2042494c41544552414c5f4e455454494e472c20464143494c4954595f4c502c206f72204252494447455f524f5554494e472e0a20202043686f6f73652042494c41544552414c5f4e455454494e47206f6e6c79207768656e20626f7468206f626c69676174696f6e7320617265207265636970726f63616c20616e640a202020636f6d70617469626c652e2043686f6f736520464143494c4954595f4c50206f6e6c79207768656e20616e204c5020696e74656e74206973206578706c696369742e204f74686572776973650a20202063686f6f7365204252494447455f524f5554494e47206f6e6c79207768656e206120726573696475616c20726f75746520697320617574686f72697a65642e0a0a526573706f6e64206f6e6c79204a534f4e3a0a7b7b0a202022656c696769626c65223a20626f6f6c2c0a2020226d6f6465223a202242494c41544552414c5f4e455454494e4722207c2022464143494c4954595f4c5022207c20224252494447455f524f5554494e4722207c202252454a454354222c0a20202272656c6174696f6e736869705f6d61746368223a20626f6f6c2c0a20202261737365745f6d61746368223a20626f6f6c2c0a202022636861696e5f726f7574655f76616c6964223a20626f6f6c2c0a2020227465726d735f636f6d70617469626c65223a20626f6f6c2c0a20202265766964656e63655f73756666696369656e74223a20626f6f6c2c0a2020226372656469746f72223a202250415254595f4122207c202250415254595f4222207c20224e4f4e45222c0a202022726561736f6e5f636f646573223a205b737472696e675d2c0a20202273756d6d617279223a20737472696e670a7d7d0a2222220a0a2020202020202020646566206e6f726d616c697a6528726573756c743a206469637429202d3e20646963743a0a202020202020202020202020616c6c6f7765645f6d6f646573203d20282242494c41544552414c5f4e455454494e47222c2022464143494c4954595f4c50222c20224252494447455f524f5554494e47222c202252454a45435422290a202020202020202020202020616c6c6f7765645f6372656469746f7273203d20282250415254595f41222c202250415254595f42222c20224e4f4e4522290a2020202020202020202020206d6f6465203d2073747228726573756c742e67657428226d6f6465222c202252454a4543542229290a2020202020202020202020206372656469746f72203d2073747228726573756c742e67657428226372656469746f72222c20224e4f4e452229290a20202020202020202020202072657475726e207b0a2020202020202020202020202020202022656c696769626c65223a20626f6f6c28726573756c742e6765742822656c696769626c65222c2046616c736529292c0a20202020202020202020202020202020226d6f6465223a206d6f6465206966206d6f646520696e20616c6c6f7765645f6d6f64657320656c7365202252454a454354222c0a202020202020202020202020202020202272656c6174696f6e736869705f6d61746368223a20626f6f6c28726573756c742e676574282272656c6174696f6e736869705f6d61746368222c2046616c736529292c0a202020202020202020202020202020202261737365745f6d61746368223a20626f6f6c28726573756c742e676574282261737365745f6d61746368222c2046616c736529292c0a2020202020202020202020202020202022636861696e5f726f7574655f76616c6964223a20626f6f6c28726573756c742e6765742822636861696e5f726f7574655f76616c6964222c2046616c736529292c0a20202020202020202020202020202020227465726d735f636f6d70617469626c65223a20626f6f6c28726573756c742e67657428227465726d735f636f6d70617469626c65222c2046616c736529292c0a202020202020202020202020202020202265766964656e63655f73756666696369656e74223a20626f6f6c28726573756c742e676574282265766964656e63655f73756666696369656e74222c2046616c736529292c0a20202020202020202020202020202020226372656469746f72223a206372656469746f72206966206372656469746f7220696e20616c6c6f7765645f6372656469746f727320656c736520224e4f4e45222c0a2020202020202020202020202020202022726561736f6e5f636f646573223a20736f72746564285b73747228782920666f72207820696e20726573756c742e6765742822726561736f6e5f636f646573222c205b5d295d292c0a202020202020202020202020202020202273756d6d617279223a2073747228726573756c742e676574282273756d6d617279222c20222229295b3a3238305d2c0a2020202020202020202020207d0a0a2020202020202020646566206d616b655f70726f6d70742865766964656e63655f613a207374722c2065766964656e63655f623a2073747229202d3e207374723a0a20202020202020202020202072657475726e2070726f6d70742e7265706c61636528227b65766964656e63655f617d222c2065766964656e63655f61292e7265706c61636528227b65766964656e63655f627d222c2065766964656e63655f62290a0a2020202020202020646566206c65616465722829202d3e207374723a0a202020202020202020202020696620615b2265766964656e63655f75726c225d3a0a2020202020202020202020202020202065766964656e63655f61203d20676c2e6e6f6e6465742e7765622e72656e64657228615b2265766964656e63655f75726c225d2c206d6f64653d227465787422295b3a363030305d0a202020202020202020202020656c73653a0a2020202020202020202020202020202065766964656e63655f61203d20224e4f5f45564944454e43455f55524c220a202020202020202020202020696620625b2265766964656e63655f75726c225d3a0a2020202020202020202020202020202065766964656e63655f62203d20676c2e6e6f6e6465742e7765622e72656e64657228625b2265766964656e63655f75726c225d2c206d6f64653d227465787422295b3a363030305d0a202020202020202020202020656c73653a0a2020202020202020202020202020202065766964656e63655f62203d20224e4f5f45564944454e43455f55524c220a202020202020202020202020726573756c74203d20676c2e6e6f6e6465742e657865635f70726f6d7074286d616b655f70726f6d70742865766964656e63655f612c2065766964656e63655f62292c20726573706f6e73655f666f726d61743d226a736f6e22290a20202020202020202020202072657475726e206a736f6e2e64756d7073286e6f726d616c697a6528726573756c74292c20736f72745f6b6579733d54727565290a0a20202020202020206465662076616c696461746f72286c65616465725f726573756c7429202d3e20626f6f6c3a0a2020202020202020202020206966206e6f74206973696e7374616e6365286c65616465725f726573756c742c20676c2e766d2e52657475726e293a0a2020202020202020202020202020202072657475726e2046616c73650a202020202020202020202020726177203d206c65616465725f726573756c742e63616c6c646174610a2020202020202020202020206966206973696e7374616e6365287261772c206279746573293a0a20202020202020202020202020202020726177203d207261772e6465636f646528290a2020202020202020202020206966206e6f74206973696e7374616e6365287261772c20737472293a0a2020202020202020202020202020202072657475726e2046616c73650a2020202020202020202020207472793a0a2020202020202020202020202020202070726f706f736564203d206e6f726d616c697a65286a736f6e2e6c6f6164732872617729290a20202020202020202020202065786365707420457863657074696f6e3a0a2020202020202020202020202020202072657475726e2046616c73650a0a202020202020202020202020696620615b2265766964656e63655f75726c225d3a0a20202020202020202020202020202020696e646570656e64656e745f61203d20676c2e6e6f6e6465742e7765622e72656e64657228615b2265766964656e63655f75726c225d2c206d6f64653d227465787422295b3a363030305d0a202020202020202020202020656c73653a0a20202020202020202020202020202020696e646570656e64656e745f61203d20224e4f5f45564944454e43455f55524c220a202020202020202020202020696620625b2265766964656e63655f75726c225d3a0a20202020202020202020202020202020696e646570656e64656e745f62203d20676c2e6e6f6e6465742e7765622e72656e64657228625b2265766964656e63655f75726c225d2c206d6f64653d227465787422295b3a363030305d0a202020202020202020202020656c73653a0a20202020202020202020202020202020696e646570656e64656e745f62203d20224e4f5f45564944454e43455f55524c220a202020202020202020202020696e646570656e64656e745f726573756c74203d206e6f726d616c697a65280a20202020202020202020202020202020676c2e6e6f6e6465742e657865635f70726f6d7074280a20202020202020202020202020202020202020206d616b655f70726f6d707428696e646570656e64656e745f612c20696e646570656e64656e745f62292c20726573706f6e73655f666f726d61743d226a736f6e220a20202020202020202020202020202020290a202020202020202020202020290a0a20202020202020202020202023204861726420696e76617269616e74732072656d61696e2064657465726d696e697374696320616e642063616e6e6f74206265206f76657272696464656e2062792041492e0a2020202020202020202020207265636970726f63616c203d20615b2270617274795f61225d203d3d20625b2270617274795f62225d20616e6420615b2270617274795f62225d203d3d20625b2270617274795f61225d0a20202020202020202020202069662070726f706f7365645b226d6f6465225d203d3d202242494c41544552414c5f4e455454494e472220616e64206e6f74207265636970726f63616c3a0a2020202020202020202020202020202072657475726e2046616c73650a20202020202020202020202069662070726f706f7365645b22656c696769626c65225d20616e642070726f706f7365645b226d6f6465225d203d3d202252454a454354223a0a2020202020202020202020202020202072657475726e2046616c73650a2020202020202020202020206966206e6f742070726f706f7365645b22656c696769626c65225d20616e642070726f706f7365645b226d6f6465225d20213d202252454a454354223a0a2020202020202020202020202020202072657475726e2046616c73650a20202020202020202020202069662070726f706f7365645b22656c696769626c65225d20616e642070726f706f7365645b226372656469746f72225d203d3d20224e4f4e45223a0a2020202020202020202020202020202072657475726e2046616c73650a20202020202020202020202072657475726e2070726f706f736564203d3d20696e646570656e64656e745f726573756c740a0a202020202020202072657475726e206a736f6e2e6c6f61647328676c2e766d2e72756e5f6e6f6e6465745f756e73616665286c65616465722c2076616c696461746f7229290a0a2020202040676c2e7075626c69632e77726974650a20202020646566206576616c756174655f636c656172696e672873656c662c206f626c69676174696f6e5f615f69643a207374722c206f626c69676174696f6e5f625f69643a2073747229202d3e204e6f6e653a0a202020202020202061203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f615f69645d290a202020202020202062203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f625f69645d290a2020202020202020696620615b22737461747573225d20213d2022564552494649454422206f7220625b22737461747573225d20213d20225645524946494544223a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d20626f7468206f626c69676174696f6e73206d75737420626520564552494649454422290a20202020202020206465636973696f6e203d2073656c662e5f61646a756469636174655f7061697228612c2062290a20202020202020206966206e6f74206465636973696f6e5b22656c696769626c65225d3a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d2073656d616e7469632061646a756469636174696f6e2072656a656374656420636c656172696e6722290a0a2020202020202020616d6f756e745f61203d20696e7428615b22616d6f756e745f6174746f225d290a2020202020202020616d6f756e745f62203d20696e7428625b22616d6f756e745f6174746f225d290a20202020202020206e6574203d2061627328616d6f756e745f61202d20616d6f756e745f62290a20202020202020206966206465636973696f6e5b226372656469746f72225d203d3d202250415254595f41223a0a202020202020202020202020646972656374696f6e203d2022425f4f5745535f41220a2020202020202020656c6966206465636973696f6e5b226372656469746f72225d203d3d202250415254595f42223a0a202020202020202020202020646972656374696f6e203d2022415f4f5745535f42220a2020202020202020656c73653a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d2061646a756469636174696f6e20686173206e6f206372656469746f7222290a0a2020202020202020615b22737461747573225d203d2022434c454152494e47220a2020202020202020615b226e65745f6174746f5f616d6f756e74225d203d20737472286e6574290a2020202020202020615b226e65745f646972656374696f6e225d203d20646972656374696f6e0a2020202020202020615b2261646a756469636174696f6e5f6d6f6465225d203d206465636973696f6e5b226d6f6465225d0a2020202020202020615b2261646a756469636174696f6e5f726561736f6e5f636f646573225d203d206a736f6e2e64756d7073286465636973696f6e5b22726561736f6e5f636f646573225d2c20736f72745f6b6579733d54727565290a2020202020202020615b2261646a756469636174696f6e5f73756d6d617279225d203d206465636973696f6e5b2273756d6d617279225d0a2020202020202020625b22737461747573225d203d2022434c454152494e47220a2020202020202020625b226e65745f6174746f5f616d6f756e74225d203d20737472286e6574290a2020202020202020625b226e65745f646972656374696f6e225d203d20646972656374696f6e0a2020202020202020625b2261646a756469636174696f6e5f6d6f6465225d203d206465636973696f6e5b226d6f6465225d0a2020202020202020625b2261646a756469636174696f6e5f726561736f6e5f636f646573225d203d206a736f6e2e64756d7073286465636973696f6e5b22726561736f6e5f636f646573225d2c20736f72745f6b6579733d54727565290a2020202020202020625b2261646a756469636174696f6e5f73756d6d617279225d203d206465636973696f6e5b2273756d6d617279225d0a202020202020202073656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f615f69645d203d206a736f6e2e64756d707328612c20736f72745f6b6579733d54727565290a202020202020202073656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f625f69645d203d206a736f6e2e64756d707328622c20736f72745f6b6579733d54727565290a0a2020202040676c2e7075626c69632e77726974650a20202020646566206d61726b5f636c65617265642873656c662c206f626c69676174696f6e5f69643a2073747229202d3e204e6f6e653a0a20202020202020206f626c203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d290a20202020202020206966206f626c5b22737461747573225d20213d2022434c454152494e47223a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d206d75737420626520434c454152494e4722290a20202020202020206f626c5b22737461747573225d203d2022434c4541524544220a20202020202020206f626c5b22636c65617265645f61745f626c6f636b225d203d2073747228676c2e626c6f636b2e6e756d626572290a202020202020202073656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d203d206a736f6e2e64756d7073286f626c2c20736f72745f6b6579733d54727565290a0a2020202040676c2e7075626c69632e77726974650a20202020646566207265636f6e63696c652873656c662c206f626c69676174696f6e5f69643a2073747229202d3e204e6f6e653a0a20202020202020206f626c203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d290a20202020202020206966206f626c5b22737461747573225d20213d2022434c4541524544223a0a202020202020202020202020726169736520676c2e766d2e557365724572726f7228225b45585045435445445d206d75737420626520434c454152454422290a20202020202020206f626c5b22737461747573225d203d20225245434f4e43494c4544220a202020202020202073656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d203d206a736f6e2e64756d7073286f626c2c20736f72745f6b6579733d54727565290a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f6f626c69676174696f6e2873656c662c206f626c69676174696f6e5f69643a2073747229202d3e20646963743a0a20202020202020206f626c203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d290a202020202020202072657475726e207b0a202020202020202020202020226964223a206f626c5b226964225d2c0a2020202020202020202020202270617274795f61223a206f626c5b2270617274795f61225d2c0a2020202020202020202020202270617274795f62223a206f626c5b2270617274795f62225d2c0a20202020202020202020202022616d6f756e745f6174746f223a206f626c5b22616d6f756e745f6174746f225d2c0a2020202020202020202020202263757272656e6379223a206f626c5b2263757272656e6379225d2c0a20202020202020202020202022737461747573223a206f626c5b22737461747573225d2c0a202020202020202020202020226e65745f6174746f5f616d6f756e74223a206f626c5b226e65745f6174746f5f616d6f756e74225d2c0a202020202020202020202020226e65745f646972656374696f6e223a206f626c5b226e65745f646972656374696f6e225d2c0a2020202020202020202020202261646a756469636174696f6e5f6d6f6465223a206f626c5b2261646a756469636174696f6e5f6d6f6465225d2c0a2020202020202020202020202261646a756469636174696f6e5f726561736f6e5f636f646573223a206f626c5b2261646a756469636174696f6e5f726561736f6e5f636f646573225d2c0a2020202020202020202020202261646a756469636174696f6e5f73756d6d617279223a206f626c5b2261646a756469636174696f6e5f73756d6d617279225d2c0a20202020202020207d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f736574746c656d656e745f63657274696669636174652873656c662c206f626c69676174696f6e5f69643a2073747229202d3e20646963743a0a20202020202020206f626c203d206a736f6e2e6c6f6164732873656c662e6f626c69676174696f6e735b6f626c69676174696f6e5f69645d290a202020202020202072657475726e207b0a202020202020202020202020226f626c69676174696f6e5f6964223a206f626c5b226964225d2c0a20202020202020202020202022737461747573223a206f626c5b22737461747573225d2c0a202020202020202020202020226e65745f6174746f5f616d6f756e74223a206f626c5b226e65745f6174746f5f616d6f756e74225d2c0a202020202020202020202020226e65745f646972656374696f6e223a206f626c5b226e65745f646972656374696f6e225d2c0a2020202020202020202020202270617274795f61223a206f626c5b2270617274795f61225d2c0a2020202020202020202020202270617274795f62223a206f626c5b2270617274795f62225d2c0a2020202020202020202020202263757272656e6379223a206f626c5b2263757272656e6379225d2c0a2020202020202020202020202261646a756469636174696f6e223a207b0a20202020202020202020202020202020226d6f6465223a206f626c5b2261646a756469636174696f6e5f6d6f6465225d2c0a2020202020202020202020202020202022726561736f6e5f636f646573223a206f626c5b2261646a756469636174696f6e5f726561736f6e5f636f646573225d2c0a202020202020202020202020202020202273756d6d617279223a206f626c5b2261646a756469636174696f6e5f73756d6d617279225d2c0a2020202020202020202020207d2c0a20202020202020202020202022736f757263655f70726f6f6673223a207b0a20202020202020202020202020202020227365706f6c69615f7478223a206f626c5b227365706f6c69615f70726f6f665f7478225d2c0a2020202020202020202020202020202022626173655f7478223a206f626c5b22626173655f70726f6f665f7478225d2c0a2020202020202020202020207d2c0a20202020202020202020202022636c65617265645f61745f626c6f636b223a206f626c5b22636c65617265645f61745f626c6f636b225d2c0a20202020202020207d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206c6973745f6f626c69676174696f6e732873656c6629202d3e206c6973743a0a202020202020202072657475726e205b7374722873656c662e6f626c69676174696f6e735b695d2e69642920666f72206920696e2072616e676528696e742873656c662e636f756e7429295d0a060000000000000000000000000000000000000000000000000000000000000000000000000000000000008301e47ea056e60e66c0e144e684705bd316807494c82cb2dbae0dbffdc3efd883826e0dd7a0627c74683684ec19c6e76ed5feb7cbb8023e579b06c7d8215f68c900d7578aa9"
+    },
+    "value_credited": false,
+    "sender": "0x85B5948Ecc0b20A89267F7C6f35f656C38268642",
+    "recipient": "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55",
+    "tx_id": "0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2",
+    "activator": "0x05d8aFc66B515038712537f99cAAEA73d16f0007",
+    "last_leader": "0x05d8aFc66B515038712537f99cAAEA73d16f0007",
+    "result_name": "MAJORITY_AGREE",
+    "num_of_rounds": "0",
+    "last_round": {
+      "round": "0",
+      "leader_index": "0",
+      "votes_committed": "5",
+      "votes_revealed": "5",
+      "appeal_bond": "0",
+      "rotations_left": "3",
+      "result": 1,
+      "round_validators": [
+        "0x05d8aFc66B515038712537f99cAAEA73d16f0007",
+        "0xcbC79F96B7A275b23EE64d80a98325107F6E1b77",
+        "0xEEcEC5D1E07Ee40f5cb85aF922178Dc01278013C",
+        "0x6760cDeC573cf38568C59872ee48B6fED41F8A4c",
+        "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E"
+      ],
+      "validator_votes_hash": [
+        "0x8924da529781a364d3c0acd17c7f5477ff1ed5737682f1d58889900ee832229f",
+        "0xd73e7225e90aff7061d0beb6705963f3a6079b9c5b285b2dffd6805b982f34e0",
+        "0xd7dfc20366fb2e692449ef6fc799fe51322ae124d583ad7d213765cde44391fb",
+        "0x0d9f860611b03a0c3b38a04f3c2d71d7462d1476e2f217457a00177f1ec0e522",
+        "0x5540cf851d428fe8321a7d7dedee5bb899f0c98c31a8c0f91ce9cab6b15a8596"
+      ],
+      "validator_votes": [
+        1,
+        3,
+        1,
+        1,
+        3
+      ],
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "AGREE",
+        "AGREE",
+        "IDLE"
+      ]
+    },
+    "type": 1,
+    "status_name": "FINALIZED",
+    "lifecycle": {
+      "state": "finalized",
+      "outcome": "accepted"
+    }
+  }
+}

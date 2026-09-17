@@ -1,0 +1,46 @@
+{
+  "genlayer": {
+    "chainId": 61997,
+    "name": "GenLayer Studio Next",
+    "rpc": "https://studio-next.genlayer.com/api",
+    "explorer": "https://explorer-studio-dev.genlayer.com",
+    "contract": "0x17c33C39f7998A7ed56D5C58f7D3d29E29444D55",
+    "tx": "0x85b854a7833a9ce927f504b257e2ddb68e68cac66d09a5beef40a9d399b3fbf2",
+    "status": "ACCEPTED",
+    "consensus": "MAJORITY_AGREE",
+    "txExecutionResultName": "FINISHED_WITH_RETURN"
+  },
+  "sepolia": {
+    "chainId": 11155111,
+    "name": "Ethereum Sepolia",
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+    "explorer": "https://sepolia.etherscan.io",
+    "vault": "0x277341fc7c2481606ac69922a35b42344be5ec6f",
+    "facility": "0x02ef7720e25d0be793f84e4e82cfab022b88c5bb",
+    "bridge": "0x3f248d90bc322aefa30035461af986db3adbb29a",
+    "deployTx": "0x47a53304df36a76f3920d7a587f8d11d2b4525481b9be49d76e1a84c3112f8c5"
+  },
+  "baseSepolia": {
+    "chainId": 84532,
+    "name": "Base Sepolia",
+    "rpc": "https://sepolia.base.org",
+    "explorer": "https://sepolia.basescan.org",
+    "vault": "0xe2b01f99107a6ad24a6bdd8e34f7e864434c69ad",
+    "facility": "0x277341fc7c2481606ac69922a35b42344be5ec6f",
+    "bridge": "0x02ef7720e25d0be793f84e4e82cfab022b88c5bb",
+    "deployTx": "0xf7f1fcad2858142c8b9e56b4eba17acc75e5bed541c953ec544a29c8d315fec7"
+  },
+  "states": {
+    "NONE": 0,
+    "LOCKED": 1,
+    "ROUTED": 2,
+    "SETTLED": 3,
+    "REFUNDED": 4
+  },
+  "relayer": "0x85B5948Ecc0b20A89267f7c6f35f656C38268642",
+  "bridgeFundingTx": "0xa5c10ad69ff9deb0a4ba13ba9af8365c836c739d0b9ae048ac0e832b1d4df0ab",
+  "nativeBridge": {
+    "l1StandardBridge": "0xfd0Bf71F60660E2f608ed56e1659C450eB113120",
+    "optimismPortal": "0x49f53e41452c74589e85ca1677426ba426459e85"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "cleara-on-gen",
+  "version": "1.0.0",
+  "description": "Cleara — Proof-Native Multichain Financial Coordination & Settlement on GenLayer Studio Next (Chain 61997) with Sepolia & Base Sepolia Native Vaults",
+  "type": "module",
+  "scripts": {
+    "test": "forge test",
+    "test:evm": "forge test -vv",
+    "test:coordinator": "python3 -m py_compile contracts/cleara_coordinator.py",
+    "check-foundry": "node scripts/check-foundry",
+    "verify": "bash scripts/verify"
+  },
+  "keywords": [
+    "genlayer",
+    "cleara",
+    "multichain",
+    "settlement",
+    "equivalence-principle",
+    "optimistic-democracy"
+  ],
+  "author": "etvjay",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "genlayer-js": "^2.0.0-rc.1",
+    "viem": "^2.56.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "tsx": "^4.23.13",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
