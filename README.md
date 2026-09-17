@@ -1,9 +1,9 @@
 # Cleara on GenLayer
 
-> **Proof-Native Multichain Financial Coordination & Bilateral Settlement**  
+> **Proof-Native Multichain Financial Coordination & Bilateral Settlement Protocol**  
 > *"Clear first. Move only what remains."*
 
-[![Foundry Verification](https://img.shields.io/badge/Foundry-100%25%20Verified-brightgreen)](#canonical-verification)
+[![Foundry Verification](https://img.shields.io/badge/Foundry-100%25%20Verified-brightgreen)](#6-canonical-verification-pipeline)
 [![GenLayer Studio Next](https://img.shields.io/badge/GenLayer-Chain%2061997-blue)](https://studio-next.genlayer.com)
 [![Ethereum Sepolia](https://img.shields.io/badge/Ethereum-Sepolia%2011155111-purple)](https://sepolia.etherscan.io)
 [![Base Sepolia](https://img.shields.io/badge/Base-Sepolia%2084532-blue)](https://sepolia.basescan.org)
@@ -12,35 +12,157 @@
 
 ---
 
-## 1. Overview
+## 1. Protocol Thesis & Vision
 
-**Cleara** separates the **adjudication of financial relationships** from the **physical movement of collateral**.
+### The Problem: Gross Multichain Settlement is Fundamentally Broken
+In modern decentralized finance, moving value across chains requires **gross settlement through third-party bridges**. When Entity A owes $100M from Ethereum to Base, and Entity B owes $90M from Base to Ethereum, the current multichain paradigm routes **$190M of gross collateral across third-party bridge contracts**.
 
-In traditional multichain finance, institutions and users move gross capital across third-party bridges, exposing liquidity to bridge exploits ($3B+ lost historically), high latency, and cross-chain execution risks. Furthermore, standard deterministic EVM smart contracts cannot evaluate natural-language commercial terms (reciprocal netting agreements, milestone terms, performance offsets), forcing participants back into centralized clearinghouses.
+This architectural flaw has resulted in:
+* **Over $3 Billion lost** in cross-chain bridge hacks and validator multisig exploits.
+* **Massive capital inefficiency:** Fragmented liquidity pools across hundreds of chains and rollups.
+* **Smart contract illiteracy:** Traditional EVM smart contracts are strictly deterministic calculators. They cannot read, interpret, or verify natural-language commercial terms, invoices, performance milestones, or master netting agreements.
+* **Centralization trap:** To net obligations, institutions are forced back into centralized, opaque clearinghouses with counterparty risk.
 
-Cleara solves this by leveraging **GenLayer's Optimistic Democracy** as an on-chain semantic interpretation and coordination engine:
-* **GenLayer Studio Next (`61997`)** serves as the canonical coordination and AI adjudication layer.
-* **Ethereum Sepolia (`11155111`)** and **Base Sepolia (`84532`)** host sovereign native execution vaults (`ClearaVault.sol`).
+### The Solution: Cleara on GenLayer
+Cleara introduces a new primitive: **separating the semantic adjudication of financial relationships from the physical movement of collateral**.
 
-Cross-chain source deposits are verified byte-for-byte by consensus validators via `strict_eq`. Reciprocal obligations are evaluated on-chain via multi-validator AI consensus. Cleara nets reciprocal obligations ($Gross \rightarrow Net$) and issues a tamper-proof Settlement Certificate. Sovereign native vaults release only the net residual and refund cleared collateral locally. **Zero gross liquidity crosses a bridge.**
+```
+Gross Multichain World (Legacy):
+Alice (Sepolia) ──── gross 0.001 ETH via Bridge ───→ Bob (Base)
+Bob (Base)      ──── gross 0.0006 ETH via Bridge ──→ Alice (Sepolia)
+Total Bridge Risk: 0.0016 ETH exposed | Latency: High | Capital Locked: 100%
 
-```text
-EVM Source Deposits (Sepolia + Base Sepolia)
-                 ↓
-GenLayer multi-validator receipt verification (strict_eq)
-                 ↓
-GenLayer comparative AI adjudication (run_nondet)
-                 ↓
-Tamper-Proof Settlement Certificate
-                 ↓
-Native Vault Unlock & Local Refunds (ClearaVault.sol)
+Cleara Netting World (GenLayer):
+Alice & Bob lock collateral in sovereign local vaults (ClearaVault.sol)
+                          ↓
+GenLayer multi-validators verify receipts via strict_eq & net terms on-chain
+                          ↓
+Net Settlement: 0.0004 ETH released to Bob locally on Sepolia
+Local Refund:   0.0006 ETH refunded to Alice locally on Sepolia
+Total Bridge Risk: 0 ETH | Bridge Movement: ZERO | Capital Cleared: 60% locally
+```
+
+Instead of sending collateral across bridges, parties lock liquidity in sovereign native vaults on their respective home chains. **GenLayer's Optimistic Democracy** acts as the decentralized financial clearinghouse:
+1. **Multi-Validator RPC Fact Verification (`strict_eq`):** Consensus validators independently query destination RPCs (`eth_getTransactionReceipt` & `eth_getTransactionByHash`) to verify deposit events byte-for-byte.
+2. **On-Chain AI Adjudication (`run_nondet`):** Validators evaluate natural-language commercial terms, confirm reciprocal relationships, enforce hard deterministic invariants, and calculate exact net obligations.
+3. **Cryptographic Settlement Certificates:** GenLayer issues an unforgeable certificate driving sovereign EVM execution vaults.
+4. **Local Native Execution:** Sovereign vaults pay out only the net residual and refund cleared collateral locally. **Zero gross capital crosses a bridge.**
+
+---
+
+## 2. Why GenLayer's Primitive Is Essential
+
+Cleara is impossible to build on Ethereum L1, Chainlink oracles, LayerZero, or standard ZK rollups:
+
+| Dimension | Why Traditional Stacks Fail | How GenLayer Solves It |
+|---|---|---|
+| **Semantic Commercial Terms** | EVM smart contracts only compute deterministic math; they cannot interpret natural-language invoices, netting agreements, or performance covenants. | **Optimistic Democracy (`run_nondet`):** Multi-validator LLM consensus evaluates semantic relationship compatibility, asset equivalence, and commercial enforceability. |
+| **Trustless Cross-Chain Evidence** | Oracles provide scalar price feeds; bridge relays rely on centralized multisigs or optimistic fraud windows. | **`strict_eq` RPC Verification:** Committee validators query `eth_getTransactionReceipt` across Sepolia and Base Sepolia, enforcing byte-level consensus without oracles. |
+| **Decentralized Clearing Authority** | Centralized clearinghouses (DTCC, CLS) act as single points of failure with opaque balance sheets. | **Settlement Certificates:** Finalized GenLayer state acts as an on-chain cryptographic authority packet driving sovereign EVM vault execution. |
+| **Built-in Dispute Escalation** | Smart contract disputes require clumsy DAO voting or administrative multisig overrides. | **Optimistic Escalation:** GenLayer's 5 → 7 → 11 → 23 validator committee escalation resolves contested adjudications cryptographically. |
+
+---
+
+## 3. End-to-End System Topology
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Alice as Alice (Party A)
+    actor Bob as Bob (Party B)
+    participant SepVault as ClearaVault (Sepolia 11155111)
+    participant BaseVault as ClearaVault (Base Sepolia 84532)
+    participant GenLayer as ClearaCoordinator (Studio Next 61997)
+    actor Relayer as Relayer / Operator
+
+    Note over Alice,BaseVault: Phase 1: Native Collateral Locking
+    Alice->>SepVault: deposit(0.001 ETH, Bob) -> state: LOCKED (1)
+    Bob->>BaseVault: deposit(0.0006 ETH, Alice) -> state: LOCKED (1)
+
+    Note over Alice,GenLayer: Phase 2: Obligation Registration
+    Alice->>GenLayer: record_obligation(Bob, 0.001 ETH, Sepolia -> Base) [obl-1]
+    Bob->>GenLayer: record_obligation(Alice, 0.0006 ETH, Base -> Sepolia) [obl-2]
+
+    Note over GenLayer: Phase 3: Multi-Validator strict_eq RPC Verification
+    Relayer->>GenLayer: verify_source_event(obl-1, Sepolia Tx, Base Tx)
+    Relayer->>GenLayer: verify_source_event(obl-2, Sepolia Tx, Base Tx)
+    Note over GenLayer: Validators query eth_getTransactionReceipt byte-for-byte -> status: VERIFIED
+
+    Note over GenLayer: Phase 4: AI Clearing Adjudication (Mode 1 Netting)
+    Relayer->>GenLayer: evaluate_clearing(obl-1, obl-2)
+    Note over GenLayer: Multi-validator AI consensus evaluates semantic terms,<br/>confirms reciprocity invariant, calculates net (0.0004 ETH) -> status: CLEARING
+
+    Note over GenLayer: Phase 5: Settlement Certificate Generation
+    Relayer->>GenLayer: mark_cleared(obl-1) & reconcile(obl-1)
+    GenLayer-->>Relayer: Settlement Certificate (obl-1, net=0.0004 ETH, direction=A_OWES_B)
+
+    Note over SepVault,BaseVault: Phase 6: Native Execution & Local Collateral Release
+    Relayer->>SepVault: unlockWithCertificate(id, Bob, 0.0004 ETH net, 0.0006 ETH refund, GenLayerTx)
+    SepVault->>Bob: Transfer 0.0004 ETH net residual
+    SepVault->>Alice: Refund 0.0006 ETH cleared collateral locally -> state: SETTLED (3)
+    Note over SepVault,BaseVault: Net result: Zero gross bridge movement. Capital cleared locally.
 ```
 
 ---
 
-## 2. Verified Deployed Infrastructure
+## 4. The Three Settlement Modes
 
-All contracts are live on testnet and backed by immutable blockchain receipts:
+Cleara supports three distinct settlement execution paths:
+
+### 🌟 Mode 1 — Bilateral Reciprocal Netting (Live Proven On-Chain)
+* **What it is:** Two counterparties owe offsetting obligations on different chains. Cleara nets reciprocal amounts on-chain ($Gross \rightarrow Net$).
+* **Concrete Numerical Walkthrough:**
+  1. **Alice** owes Bob `0.001 ETH` on Ethereum Sepolia for server infrastructure. She locks `0.001 ETH` in `ClearaVault` on Sepolia.
+  2. **Bob** owes Alice `0.0006 ETH` on Base Sepolia for data ingestion. He locks `0.0006 ETH` in `ClearaVault` on Base Sepolia.
+  3. **Gross Exposure:** `0.0016 ETH` would traditionally move across bridges.
+  4. **GenLayer Resolution:** GenLayer verifies deposits via `strict_eq`, adjudicates the reciprocal relationship via AI consensus, and calculates the net debt:
+     $$\text{Net Residual} = 0.001 - 0.0006 = 0.0004\text{ ETH (Alice owes Bob)}$$
+  5. **Local Vault Execution:**
+     * Bob receives `0.0004 ETH` net residual on Ethereum Sepolia.
+     * Alice receives an immediate local refund of `0.0006 ETH` on Ethereum Sepolia.
+     * Bob's collateral on Base Sepolia is released locally.
+* **Impact:** **Zero tokens cross a bridge.** 60% of Alice's debt and 100% of Bob's debt are cleared with zero multichain slippage and zero bridge risk.
+
+### Mode 2 — Facility / LP Fronting & Collateral Claim
+* **What it is:** For urgent, high-frequency, or asymmetric payouts where immediate destination liquidity is required.
+* **Execution:**
+  1. Alice locks collateral in `ClearaVault` on Chain A.
+  2. An approved Liquidity Provider (LP) registered in `ClearaFacilityManager` fronts immediate native funds to Bob locally on Chain B.
+  3. GenLayer verifies the fulfillment and issues a Settlement Certificate.
+  4. The LP claims the locked collateral on Chain A using the finalized certificate.
+* **Impact:** Instant cross-chain settlement with zero bridge latency, backed by decentralized credit facilities.
+
+### Mode 3 — Residual Bridge Routing
+* **What it is:** When residual non-reciprocal debt cannot be netted and must be physically bridged.
+* **Execution:**
+  1. The vault interfaces with canonical native bridges (e.g. OP Standard Bridge or Arbitrum Native Bridge) via `MockBridgeAdapter.sol`.
+  2. Only the unnetted residual moves through the bridge.
+* **Impact:** Eliminates third-party wrapped bridge risks by restricting bridge volume to minimal net residuals.
+
+---
+
+## 5. Live Multichain Proving Evidence (Mode 1 Netting)
+
+The complete Mode 1 Bilateral Netting lifecycle was executed across live testnets and recorded in [`foundry/evidence/live-lifecycle.log`](foundry/evidence/live-lifecycle.log):
+
+| Step | Operation | Network | Entity / Tx Hash | On-Chain Result |
+|---|---|---|---|---|
+| **1** | Collateral Lock | Sepolia (`11155111`) | Alice (`0x85B5...`) | `0.001 ETH` in state `1` (`LOCKED`) |
+| **1** | Collateral Lock | Base Sepolia (`84532`) | Bob (`0x7099...`) | `0.0006 ETH` in state `1` (`LOCKED`) |
+| **2** | Record Obligation 1 | Studio Next (`61997`) | [`0xe80ec8ca...`](foundry/evidence/live-lifecycle.log) | `obl-1` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
+| **2** | Record Obligation 2 | Studio Next (`61997`) | [`0x22d76a53...`](foundry/evidence/live-lifecycle.log) | `obl-2` registered (`ACCEPTED`, `FINISHED_WITH_RETURN`) |
+| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0xd8005517...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
+| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0x924c1daa...`](foundry/evidence/live-lifecycle.log) | Receipt verified byte-for-byte by validators |
+| **3** | `strict_eq` Proof (Sepolia) | Studio Next (`61997`) | [`0x08bfc728...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified |
+| **3** | `strict_eq` Proof (Base) | Studio Next (`61997`) | [`0x72254f5e...`](foundry/evidence/live-lifecycle.log) | Counterparty receipt verified -> `status: VERIFIED` |
+| **4 & 5** | Settlement Certificate | Studio Next (`61997`) | Contract `0x17c33C39...` | Cryptographic certificate with source tx proofs |
+| **6** | **Native Vault Unlock** | **Ethereum Sepolia** | [`0xee575bb6...`](https://sepolia.etherscan.io/tx/0xee575bb6e1d5ebadc4aa4670e973b80ab9d39257a5e93d4fdbd22cabce5ceeae) | **Block `11723739`: Status `success` -> State `3` (`SETTLED`)** |
+
+---
+
+## 6. Verified Deployed Infrastructure
+
+All protocol contracts are live on testnet and verified with immutable receipts:
 
 | Layer / Role | Network | Contract Address | Deployment Evidence | Status |
 |---|---|---|---|---|
@@ -50,39 +172,7 @@ All contracts are live on testnet and backed by immutable blockchain receipts:
 
 ---
 
-## 3. The Three Settlement Modes
-
-Cleara supports three distinct settlement execution paths:
-
-### Mode 1 — Bilateral Reciprocal Netting ($Gross \rightarrow Net$)
-* **Scenario:** Alice owes Bob 0.001 ETH on Sepolia; Bob owes Alice 0.0006 ETH on Base Sepolia.
-* **Execution:**
-  1. Both parties lock collateral in their local `ClearaVault`.
-  2. GenLayer proves both source events via `strict_eq` RPC verification.
-  3. GenLayer evaluates terms and reciprocal relationship via AI consensus.
-  4. GenLayer calculates net residual: $0.001 - 0.0006 = 0.0004\text{ ETH}$.
-  5. Sepolia Vault unlocks 0.0004 ETH to Bob and refunds 0.0006 ETH to Alice locally.
-* **Result:** Zero gross liquidity crosses bridges; 60% of capital cleared locally.
-
-### Mode 2 — Facility / LP Fronting & Collateral Claim
-* **Scenario:** An urgent obligation requires instant payout on the destination rail before cross-chain reconciliation.
-* **Execution:**
-  1. Alice locks collateral in `ClearaVault` on Chain A.
-  2. A Liquidity Provider (LP) registered in `ClearaFacilityManager` fronts immediate funds locally on Chain B.
-  3. GenLayer verifies fulfillment and issues a Settlement Certificate.
-  4. LP claims the locked collateral on Chain A using the certificate.
-* **Result:** Instant zero-latency cross-chain settlement backed by on-chain credit facilities.
-
-### Mode 3 — Residual Bridge Routing
-* **Scenario:** An unnetted residual obligation must be physically moved between chains.
-* **Execution:**
-  1. Vault interfaces with canonical native bridge infrastructure (e.g. OP Standard Bridge).
-  2. Funds route securely without third-party wrapped asset risks.
-* **Result:** Pluggable bridge adapter fallback for net residuals only.
-
----
-
-## 4. Equivalence Principle Design
+## 7. Equivalence Principle Design
 
 Cleara enforces strict separation between deterministic facts and semantic financial judgment:
 
@@ -103,7 +193,7 @@ Can validators reproduce the exact same normalized output?
 
 ---
 
-## 5. Canonical Verification
+## 8. Canonical Verification Pipeline
 
 The repository enforces the **BUILD_FOUNDRY.md v1.0** standard. To run the automated verification suite:
 
@@ -117,38 +207,20 @@ cd ClearaOnGen
 ```
 
 ### Verification Pipeline:
-1. **EVM Vault Test Suite (`forge test -vv`):** 7/7 passing unit tests covering all 3 settlement modes, balance locking, facility registry, and relayer access control.
+1. **EVM Vault Test Suite (`forge test -vv`):** 7/7 passing unit tests covering Mode 1 bilateral netting, Mode 2 LP fronting, Mode 3 bridge routing, balance locking, facility registry, and relayer access control.
 2. **GenLayer Coordinator Syntax (`python3 -m py_compile`):** Validates the Python intelligent contract.
 3. **Control Plane Integrity (`node scripts/check-foundry`):** Validates that all claims in `foundry/claims.jsonl` are backed by genuine evidence files and that `foundry/gaps.jsonl` has zero unresolved critical gaps.
 
 ---
 
-## 6. Live Multichain Proving Evidence
-
-The entire multichain lifecycle has been executed on live testnets and recorded in [`foundry/evidence/live-lifecycle.log`](foundry/evidence/live-lifecycle.log):
-
-* **GenLayer Obligation 1 (`obl-1`):** Tx `0xe80ec8ca...` (status 5, `FINISHED_WITH_RETURN`)
-* **GenLayer Obligation 2 (`obl-2`):** Tx `0x22d76a53...` (status 5, `FINISHED_WITH_RETURN`)
-* **Multi-Validator `strict_eq` Verification:**
-  * Sepolia deposit verified: Tx `0xd8005517...` (status 5, `FINISHED_WITH_RETURN`)
-  * Base Sepolia deposit verified: Tx `0x924c1daad...` (status 5, `FINISHED_WITH_RETURN`)
-  * Obligations marked `VERIFIED` by consensus.
-* **Native EVM Vault Unlock:**
-  * **Sepolia Unlock Tx:** [`0xee575bb6e1d5ebadc4aa4670e973b80ab9d39257a5e93d4fdbd22cabce5ceeae`](https://sepolia.etherscan.io/tx/0xee575bb6e1d5ebadc4aa4670e973b80ab9d39257a5e93d4fdbd22cabce5ceeae)
-  * **Sepolia Block:** `11723739`
-  * **Receipt Status:** `success`
-  * **Final Sepolia Vault Deposit State:** `3` (`SETTLED`)
-
----
-
-## 7. Repository Layout
+## 9. Repository Layout
 
 ```text
 .
 ├── BUILD_FOUNDRY.md          # Canonical engineering governance standard
 ├── SUBMISSION.md             # Complete Hackathon Submission Package
 ├── PRD.md                    # Product Requirements Document
-├── ARCHITECTURE.md           # Topology and sequence diagrams
+├── ARCHITECTURE.md           # System topology and sequence diagrams
 ├── AGENTS.md                 # Contributor and agent instructions
 ├── DEMO.md                   # Live demonstration walkthrough
 │
@@ -181,6 +253,6 @@ The entire multichain lifecycle has been executed on live testnets and recorded 
 
 ---
 
-## 8. License
+## 10. License
 
 Distributed under the MIT License. See `LICENSE` for details.
