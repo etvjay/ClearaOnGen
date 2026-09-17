@@ -3,13 +3,14 @@
   "version": 1,
   "current_phase": "04",
   "status": "E2E_VERIFIED",
-  "head": "5d402777ff7db2386f9a849ecb92d1f529605678",
-  "last_verified_head": "5d402777ff7db2386f9a849ecb92d1f529605678",
-  "last_verified_at": "2026-09-17T12:35:55Z",
+  "head": "d67ca40",
+  "last_verified_head": "d67ca40",
+  "last_verified_at": "2026-09-17T12:41:00Z",
   "critical_open_gaps": 0,
   "high_open_gaps": 0,
   "external_blockers": 0,
   "live_evidence_current": true
 }
+
 
 
